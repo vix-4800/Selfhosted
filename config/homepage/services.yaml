@@ -23,6 +23,10 @@
             icon: prometheus.png
             href: http://localhost:9090
             description: Time-series database
+      - "Uptime Kuma":
+            icon: uptime-kuma.png
+            href: http://localhost:3001/dashboard
+            description: "Availability monitoring"
 
 - Media:
       - Syncthing:
@@ -39,7 +43,9 @@
             icon: pihole.png
             href: https://pihole.example.com
             description: "Ad blocking"
-      - "Uptime Kuma":
-            icon: uptime-kuma.png
-            href: http://localhost:3001/dashboard
-            description: "Availability monitoring"
+
+- Security:
+      - Vaultwarden:
+            icon: vaultwarden.png
+            href: http://localhost:8080
+            description: "Password manager"
