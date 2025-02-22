@@ -37,6 +37,10 @@
             icon: mealie.png
             href: http://localhost:9925
             description: "Recipe management"
+      - Kavita:
+            icon: kavita.png
+            href: http://localhost:5000
+            description: "Book reader"
 
 - Network:
       - WireGuard:
