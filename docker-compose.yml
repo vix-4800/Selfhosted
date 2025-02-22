@@ -15,7 +15,7 @@ services:
     portainer:
         image: portainer/portainer-ce:lts
         container_name: portainer
-        restart: always
+        restart: unless-stopped
         ports:
             - "9000:9000"
         volumes:
@@ -25,16 +25,40 @@ services:
     uptime-kuma:
         image: louislam/uptime-kuma:1
         container_name: uptime-kuma
-        restart: always
+        restart: unless-stopped
         ports:
             - "3001:3001"
         volumes:
-            - uptime-kuma:/app/data
+            - uptime-kuma_data:/app/data
+
+    wg-easy:
+        image: ghcr.io/wg-easy/wg-easy
+        container_name: wg-easy
+        environment:
+            - PORT=51821
+            - WG_PORT=51820
+        volumes:
+            - wg-easy_data:/etc/wireguard
+        ports:
+            - "51820:51820/udp"
+            - "51821:51821/tcp"
+        cap_add:
+            - NET_ADMIN
+            - SYS_MODULE
+        sysctls:
+            net.ipv4.conf.all.src_valid_mark: 1
+            net.ipv4.ip_forward: 1
+        restart: unless-stopped
+        env_file:
+            - .env
 
 volumes:
     portainer_data:
         name: portainer_data
         driver: local
-    uptime-kuma:
-        name: uptime-kuma
+    uptime-kuma_data:
+        name: uptime-kuma_data
+        driver: local
+    wg-easy_data:
+        name: wg-easy_data
         driver: local
