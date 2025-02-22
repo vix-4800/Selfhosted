@@ -66,6 +66,41 @@ services:
             - syncthing_data:/var/data
         restart: unless-stopped
 
+    grafana:
+        image: grafana/grafana-enterprise
+        container_name: grafana
+        networks:
+            - monitoring
+        ports:
+            - "3000:3000"
+        restart: unless-stopped
+
+    prometheus:
+        image: prom/prometheus
+        container_name: prometheus
+        networks:
+            - monitoring
+        ports:
+            - "9090:9090"
+        volumes:
+            - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+            - prometheus_data:/prometheus
+        restart: unless-stopped
+
+    node-exporter:
+        image: quay.io/prometheus/node-exporter:latest
+        container_name: node-exporter
+        networks:
+            - monitoring
+        volumes:
+            - "/:/host:ro,rslave"
+        command: --path.rootfs=/host
+        restart: unless-stopped
+
+networks:
+    monitoring:
+        driver: bridge
+
 volumes:
     portainer_data:
         name: portainer_data
@@ -78,4 +113,7 @@ volumes:
         driver: local
     syncthing_data:
         name: syncthing_data
+        driver: local
+    prometheus_data:
+        name: prometheus_data
         driver: local
