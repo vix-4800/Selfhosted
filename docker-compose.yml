@@ -2,9 +2,6 @@ services:
     homepage:
         image: ghcr.io/gethomepage/homepage:latest
         container_name: homepage
-        environment:
-            - PUID=1000
-            - PGID=1000
         ports:
             - "80:3000"
         volumes:
@@ -74,6 +71,8 @@ services:
         ports:
             - "3000:3000"
         restart: unless-stopped
+        volumes:
+            - grafana_data:/var/lib/grafana
 
     prometheus:
         image: prom/prometheus
@@ -158,4 +157,7 @@ volumes:
         driver: local
     netdatacache:
         name: netdatacache
+        driver: local
+    grafana_data:
+        name: grafana_data
         driver: local
