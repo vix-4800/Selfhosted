@@ -1,0 +1,33 @@
+- Infrastructure:
+      - Portainer:
+            icon: portainer.png
+            href: http://178.208.66.53:9000/#!/home
+            description: "Management of Docker containers"
+      - Netdata:
+            icon: netdata.png
+            href: http://178.208.66.53:19999
+            description: "Server resource monitoring"
+      - "Uptime Kuma":
+            icon: uptime-kuma.png
+            href: http://178.208.66.53:3001/dashboard
+            description: "Availability monitoring"
+
+- Media:
+      - Syncthing:
+            icon: syncthing.png
+            href: http://178.208.66.53:8384
+            description: "File synchronization"
+
+- Network:
+      - WireGuard:
+            icon: wireguard.png
+            href: http://178.208.66.53:51821/
+            description: "VPN server"
+      - Pi-hole:
+            icon: pihole.png
+            href: https://pihole.example.com
+            description: "Ad blocking"
+            # widget:
+            #     type: pihole
+            #     url: http://pihole.local
+            #     apiKey: your_api_key

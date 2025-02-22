@@ -1,0 +1,7 @@
+headerStyle: faded
+theme: dark
+language: en
+
+providers:
+    openweathermap: openweathermapapikey
+    weatherapi: weatherapiapikey
