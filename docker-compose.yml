@@ -52,6 +52,20 @@ services:
         env_file:
             - .env
 
+    syncthing:
+        image: syncthing/syncthing:latest
+        container_name: syncthing
+        hostname: syncthing
+        ports:
+            - "8384:8384"
+            - "22000:22000/tcp"
+            - "22000:22000/udp"
+            - "21027:21027/udp"
+        volumes:
+            - /var/syncthing:/var/syncthing
+            - syncthing_data:/var/data
+        restart: unless-stopped
+
 volumes:
     portainer_data:
         name: portainer_data
@@ -61,4 +75,7 @@ volumes:
         driver: local
     wg-easy_data:
         name: wg-easy_data
+        driver: local
+    syncthing_data:
+        name: syncthing_data
         driver: local
