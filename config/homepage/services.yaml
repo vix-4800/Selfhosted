@@ -33,6 +33,10 @@
             icon: syncthing.png
             href: http://localhost:8384
             description: "File synchronization"
+      - Mealie:
+            icon: mealie.png
+            href: http://localhost:9925
+            description: "Recipe management"
 
 - Network:
       - WireGuard:
