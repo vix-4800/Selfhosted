@@ -2,7 +2,18 @@
       cpu: true
       memory: true
       disk: /
+      uptime: true
 
 - search:
       provider: duckduckgo
       target: _blank
+
+- openmeteo:
+      label: Saratov
+      latitude: 51.536761
+      longitude: 45.982153
+      timezone: Europe/Saratov
+      units: metric
+      cache: 15 # Time in minutes
+      format:
+          maximumFractionDigits: 1
