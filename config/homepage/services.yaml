@@ -1,63 +1,63 @@
 - Infrastructure:
       - Portainer:
             icon: portainer.png
-            href: http://localhost:9000/#!/home
+            href: http://localhost/portainer/
             description: "Management of Docker containers"
       - Watchtower:
             icon: watchtower.png
             description: Auto-update containers
       - Duplicati:
             icon: duplicati.png
-            href: http://localhost:8200
+            href: http://localhost/duplicati/
             description: "Backup software"
 
 - Monitoring:
       - Netdata:
             icon: netdata.png
-            href: http://localhost:19999
+            href: http://localhost/netdata/
             description: "Server resource monitoring"
       - Grafana:
             icon: grafana.png
-            href: http://localhost:3000
+            href: http://localhost/grafana/
             description: "Monitoring of servers"
       - Node Exporter:
             icon: prometheus.png
             description: Hardware metrics
       - Prometheus:
             icon: prometheus.png
-            href: http://localhost:9090
+            href: http://localhost/prometheus/
             description: Time-series database
       - "Uptime Kuma":
             icon: uptime-kuma.png
-            href: http://localhost:3001/dashboard
+            href: http://localhost/uptime/
             description: "Availability monitoring"
 
 - Media:
       - Syncthing:
             icon: syncthing.png
-            href: http://localhost:8384
+            href: http://localhost/syncthing/
             description: "File synchronization"
       - Mealie:
             icon: mealie.png
-            href: http://localhost:9925
+            href: http://localhost:9925/
             description: "Recipe management"
       - Kavita:
             icon: kavita.png
-            href: http://localhost:5000
+            href: http://localhost:5000/
             description: "Book reader"
 
 - Network:
       - WireGuard:
             icon: wireguard.png
-            href: http://localhost:51821/
+            href: http://localhost/wg/
             description: "VPN server"
       - Pi-hole:
             icon: pihole.png
-            href: https://pihole.example.com
+            href: https://pihole.example.com/
             description: "Ad blocking"
 
 - Security:
       - Vaultwarden:
             icon: vaultwarden.png
-            href: http://localhost:8080
+            href: http://localhost/vaultwarden/
             description: "Password manager"

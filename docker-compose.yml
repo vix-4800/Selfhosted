@@ -1,13 +1,26 @@
 services:
+    nginx:
+        image: nginx
+        container_name: nginx
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./config/nginx/default.conf:/etc/nginx/nginx.conf
+        restart: unless-stopped
+        networks:
+            - proxy_network
+            - monitoring
+
     homepage:
         image: ghcr.io/gethomepage/homepage:latest
         container_name: homepage
-        ports:
-            - "80:3000"
         volumes:
             - ./config/homepage:/app/config
             - /var/run/docker.sock:/var/run/docker.sock:ro
         restart: unless-stopped
+        networks:
+            - proxy_network
         deploy:
             resources:
                 limits:
@@ -18,20 +31,20 @@ services:
         image: portainer/portainer-ce:lts
         container_name: portainer
         restart: unless-stopped
-        ports:
-            - "9000:9000"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - portainer_data:/data
+        networks:
+            - proxy_network
 
     uptime-kuma:
         image: louislam/uptime-kuma:1
         container_name: uptime-kuma
         restart: unless-stopped
-        ports:
-            - "3001:3001"
         volumes:
             - uptime-kuma_data:/app/data
+        networks:
+            - proxy_network
         deploy:
             resources:
                 limits:
@@ -56,6 +69,8 @@ services:
             net.ipv4.conf.all.src_valid_mark: 1
             net.ipv4.ip_forward: 1
         restart: unless-stopped
+        networks:
+            - proxy_network
         env_file:
             - .env
 
@@ -64,7 +79,6 @@ services:
         container_name: syncthing
         hostname: syncthing
         ports:
-            - "8384:8384"
             - "22000:22000/tcp"
             - "22000:22000/udp"
             - "21027:21027/udp"
@@ -72,14 +86,19 @@ services:
             - /var/syncthing:/var/syncthing
             - syncthing_data:/var/data
         restart: unless-stopped
+        networks:
+            - proxy_network
 
     grafana:
         image: grafana/grafana-enterprise
         container_name: grafana
         networks:
             - monitoring
-        ports:
-            - "3000:3000"
+            - proxy_network
+        environment:
+            - GF_SERVER_ROOT_URL=http://localhost/grafana/
+            - GF_SERVER_SERVE_FROM_SUB_PATH=tru
+            - GF_SERVER_HTTP_PORT=3002
         restart: unless-stopped
         volumes:
             - grafana_data:/var/lib/grafana
@@ -94,8 +113,7 @@ services:
         container_name: prometheus
         networks:
             - monitoring
-        ports:
-            - "9090:9090"
+            - proxy_network
         volumes:
             - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
             - prometheus_data:/prometheus
@@ -113,6 +131,7 @@ services:
         container_name: node-exporter
         networks:
             - monitoring
+            - proxy_network
         volumes:
             - "/:/host:ro,rslave"
         command: --path.rootfs=/host
@@ -127,7 +146,8 @@ services:
         image: netdata/netdata
         container_name: netdata
         pid: host
-        network_mode: host
+        networks:
+            - monitoring
         volumes:
             - netdataconfig:/etc/netdata
             - netdatalib:/var/lib/netdata
@@ -155,6 +175,8 @@ services:
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
         restart: unless-stopped
+        networks:
+            - proxy_network
 
     vaultwarden:
         image: vaultwarden/server:latest
@@ -162,24 +184,35 @@ services:
         volumes:
             - vaultwarden_data:/data/
         restart: unless-stopped
-        ports:
-            - "8080:80"
+        environment:
+            - ROCKET_WEB_VAULT_PREFIX=/vaultwarden
+        networks:
+            - proxy_network
 
     mealie:
         image: ghcr.io/mealie-recipes/mealie:v2.6.0
         container_name: mealie
         restart: unless-stopped
-        ports:
-            - "9925:9000"
-        mem_limit: 1000M
         volumes:
             - mealie_data:/app/data/
         environment:
             ALLOW_SIGNUP: false
+            PUID: 1000
+            PGID: 1000
             MAX_WORKERS: 2
             WEB_CONCURRENCY: 1
+            SECURITY_MAX_LOGIN_ATTEMPTS: 5
+            SECURITY_USER_LOCKOUT_TIME: 1
         env_file:
             - .env
+        ports:
+            - 9925:9000
+        networks:
+            - proxy_network
+        deploy:
+            resources:
+                limits:
+                    memory: 1000M
 
     kavita:
         image: jvmilazz0/kavita:latest
@@ -194,6 +227,8 @@ services:
         restart: unless-stopped
         env_file:
             - .env
+        networks:
+            - proxy_network
         deploy:
             resources:
                 limits:
@@ -210,14 +245,16 @@ services:
             - mealie_data:/source/mealie
             - kavita_data:/source/kavita
             - syncthing_data:/source/syncthing
-        ports:
-            - 8200:8200
         restart: unless-stopped
         env_file:
             - .env
+        networks:
+            - proxy_network
 
 networks:
     monitoring:
+        driver: bridge
+    proxy_network:
         driver: bridge
 
 volumes:
