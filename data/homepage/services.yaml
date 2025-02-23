@@ -1,3 +1,13 @@
+- Calendar:
+      - Media Calendar:
+            widget:
+                type: calendar
+                firstDayInWeek: sunday
+                view: monthly
+                maxEvents: 10
+                showTime: true
+                timezone: Europe/Saratov
+
 - Infrastructure:
       - Portainer:
             icon: portainer.png

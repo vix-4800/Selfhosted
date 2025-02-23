@@ -1,7 +1,33 @@
 headerStyle: faded
 theme: dark
 language: en
+color: indigo
+useEqualHeights: true
+hideVersion: false
 
-providers:
-    openweathermap: openweathermapapikey
-    weatherapi: weatherapiapikey
+background:
+    image: https://wallpapercave.com/wp/wp4565843.jpg
+    blur: md
+    saturate: 50
+    brightness: 50
+    opacity: 70
+
+layout:
+    AI's:
+    Mail:
+    Developer:
+    Social:
+    Calendar:
+    Infrastructure:
+        style: row
+        columns: 4
+    Monitoring:
+        style: row
+        columns: 5
+    Media:
+        style: row
+        columns: 5
+    Network:
+        style: row
+        columns: 2
+    Security:

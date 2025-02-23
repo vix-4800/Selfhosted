@@ -1,4 +1,24 @@
-- Developer:
+- Mail:
+      - Gmail:
+            - abbr: GM
+              href: https://mail.google.com/mail/
+      - Proton:
+            - abbr: PT
+              href: https://mail.protonmail.com/
+      - Mail:
+            - abbr: ML
+              href: https://e.mail.ru/
+      - Yandex:
+            - abbr: YD
+              href: https://mail.yandex.ru/
+
+- Social:
+      - Telegram:
+            - abbr: TG
+              href: https://t.me/vix_4800
+      - VK:
+            - abbr: VK
+              href: https://vk.com/vix_4800
       - GitHub:
             - abbr: GH
               href: https://github.com/vix-4800
@@ -6,7 +26,25 @@
             - abbr: GL
               href: https://gitlab.com/vix-4800
 
-- Social:
-      - Telegram:
-            - abbr: TG
-              href: https://t.me/vix_4800
+- AI's:
+      - DeepSeek:
+            - abbr: DS
+              href: https://chat.deepseek.com/
+      - ChatGPT:
+            - abbr: GPT
+              href: https://chat.openai.com
+      - Gwen:
+            - abbr: GW
+              href: https://chat.qwenlm.ai/
+      - DuckDuckGo AI:
+            - abbr: DDG
+              href: https://duck.ai/
+      - Gemini:
+            - abbr: GM
+              href: https://gemini.google.com/
+      - Claude:
+            - abbr: CL
+              href: https://claude.ai
+      - Leonardo AI:
+            - abbr: LE
+              href: https://app.leonardo.ai/
