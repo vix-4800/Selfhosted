@@ -1,22 +1,27 @@
 services:
-    nginx:
-        image: nginx
-        container_name: nginx
+    nginx-proxy-manager:
+        image: "jc21/nginx-proxy-manager:latest"
+        container_name: nginx-proxy-manager
+        restart: unless-stopped
         ports:
             - "80:80"
             - "443:443"
-        volumes:
-            - ./config/nginx/default.conf:/etc/nginx/nginx.conf
-        restart: unless-stopped
+            - "3000:81"
         networks:
             - proxy_network
             - monitoring
+        volumes:
+            - ./data/nginx:/data
+            - /etc/letsencrypt:/etc/letsencrypt
+        environment:
+            INITIAL_ADMIN_EMAIL: admin@example.com
+            INITIAL_ADMIN_PASSWORD: strongpassword
 
     homepage:
         image: ghcr.io/gethomepage/homepage:latest
         container_name: homepage
         volumes:
-            - ./config/homepage:/app/config
+            - ./data/homepage:/app/config
             - /var/run/docker.sock:/var/run/docker.sock:ro
         restart: unless-stopped
         networks:
@@ -98,7 +103,6 @@ services:
         environment:
             - GF_SERVER_ROOT_URL=http://localhost/grafana/
             - GF_SERVER_SERVE_FROM_SUB_PATH=tru
-            - GF_SERVER_HTTP_PORT=3002
         restart: unless-stopped
         volumes:
             - grafana_data:/var/lib/grafana
@@ -115,7 +119,7 @@ services:
             - monitoring
             - proxy_network
         volumes:
-            - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+            - ./data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
             - prometheus_data:/prometheus
         restart: unless-stopped
         deploy:
