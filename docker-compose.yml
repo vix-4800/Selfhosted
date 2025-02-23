@@ -209,8 +209,6 @@ services:
             SECURITY_USER_LOCKOUT_TIME: 1
         env_file:
             - .env
-        ports:
-            - 9925:9000
         networks:
             - proxy_network
         deploy:
@@ -221,8 +219,6 @@ services:
     kavita:
         image: jvmilazz0/kavita:latest
         container_name: kavita
-        ports:
-            - "5000:5000"
         volumes:
             - /var/data/comics:/comics
             - /var/data/books:/books
@@ -252,6 +248,16 @@ services:
         restart: unless-stopped
         env_file:
             - .env
+        networks:
+            - proxy_network
+
+    adguard:
+        image: adguard/adguardhome
+        container_name: adguard
+        restart: unless-stopped
+        volumes:
+            - adguard_data:/opt/adguardhome/work
+            - adguard_config:/opt/adguardhome/conf
         networks:
             - proxy_network
 
@@ -300,4 +306,10 @@ volumes:
         driver: local
     duplicati_data:
         name: duplicati_data
+        driver: local
+    adguard_data:
+        name: adguard_data
+        driver: local
+    adguard_config:
+        name: adguard_config
         driver: local

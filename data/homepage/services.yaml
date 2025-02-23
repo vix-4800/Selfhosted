@@ -51,9 +51,9 @@
             icon: wireguard.png
             href: http://wg.localhost/
             description: "VPN server"
-      - Pi-hole:
-            icon: pihole.png
-            href: https://pihole.localhost/
+      - AdGuard Home:
+            icon: adguard.png
+            href: http://adguard.localhost/
             description: "Ad blocking"
 
 - Security:
