@@ -280,13 +280,12 @@ services:
         env_file:
             - .env
 
-    filebrowser:
-        image: filebrowser/filebrowser
-        volumes:
-            - /path/to/root:/srv
-            - /path/filebrowser.db:/database.db
-            - /path/.filebrowser.json:/.filebrowser.json
+    tinyfilemanager:
+        image: tinyfilemanager/tinyfilemanager:master
+        container_name: tinyfilemanager
         restart: unless-stopped
+        volumes:
+            - /:/var/www/html
         networks:
             - proxy_network
 
