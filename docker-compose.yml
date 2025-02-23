@@ -168,6 +168,22 @@ services:
         env_file:
             - .env
 
+    duplicati:
+        image: lscr.io/linuxserver/duplicati:latest
+        container_name: duplicati
+        volumes:
+            - duplicati_data:/config
+            - /var/backups:/backups
+            - vaultwarden_data:/source/vaultwarden
+            - mealie_data:/source/mealie
+            - kavita_data:/source/kavita
+            - syncthing_data:/source/syncthing
+        ports:
+            - 8200:8200
+        restart: unless-stopped
+        env_file:
+            - .env
+
 networks:
     monitoring:
         driver: bridge
@@ -208,4 +224,7 @@ volumes:
         driver: local
     kavita_data:
         name: kavita_data
+        driver: local
+    duplicati_data:
+        name: duplicati_data
         driver: local

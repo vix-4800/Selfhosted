@@ -6,6 +6,10 @@
       - Watchtower:
             icon: watchtower.png
             description: Auto-update containers
+      - Duplicati:
+            icon: duplicati.png
+            href: http://localhost:8200
+            description: "Backup software"
 
 - Monitoring:
       - Netdata:
