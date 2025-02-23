@@ -45,6 +45,10 @@
             icon: kavita.png
             href: http://kavita.localhost/
             description: "Book reader"
+      - Navidrome:
+            icon: navidrome.png
+            href: http://navidrome.localhost/
+            description: "Music library"
 
 - Network:
       - WireGuard:

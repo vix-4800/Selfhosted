@@ -261,6 +261,26 @@ services:
         networks:
             - proxy_network
 
+    navidrome:
+        image: deluan/navidrome:latest
+        container_name: navidrome
+        restart: unless-stopped
+        volumes:
+            - "navidrome_data:/data"
+            - "/var/music:/music:ro"
+        networks:
+            - proxy_network
+        environment:
+            ND_SCANSCHEDULE: "@every 1h"
+            ND_LOGLEVEL: "info"
+            ND_UIWELCOMEMESSAGE: "Welcome Back!"
+            ND_DEFAULTTHEME: "Dark"
+            ND_ENABLECOVERANIMATION: "true"
+            ND_ENABLEDOWNLOADS: "true"
+            ND_SESSIONTIMEOUT: "24h"
+        env_file:
+            - .env
+
 networks:
     monitoring:
         driver: bridge
@@ -312,4 +332,7 @@ volumes:
         driver: local
     adguard_config:
         name: adguard_config
+        driver: local
+    navidrome_data:
+        name: navidrome_data
         driver: local
