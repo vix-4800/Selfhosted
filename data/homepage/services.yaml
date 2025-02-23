@@ -10,6 +10,10 @@
             icon: duplicati.png
             href: http://duplicati.localhost/
             description: "Backup software"
+      - Nginx Proxy Manager:
+            icon: nginx-proxy-manager.png
+            href: http://npm.localhost/
+            description: "Management of Nginx reverse proxy"
 
 - Monitoring:
       - Netdata:
