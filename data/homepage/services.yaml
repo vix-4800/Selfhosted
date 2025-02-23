@@ -67,6 +67,10 @@
             icon: tinyfilemanager.png
             href: http://files.localhost/
             description: "File management"
+      - Photoprism:
+            icon: photoprism.png
+            href: http://prism.localhost/
+            description: "Photo management"
 
 - Network:
       - WireGuard:

@@ -26,7 +26,7 @@ layout:
         columns: 5
     Media:
         style: row
-        columns: 5
+        columns: 3
     Network:
         style: row
         columns: 2

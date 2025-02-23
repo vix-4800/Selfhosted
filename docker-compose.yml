@@ -100,7 +100,7 @@ services:
             - monitoring
             - proxy_network
         environment:
-            - GF_SERVER_ROOT_URL=http://localhost/grafana/
+            - GF_SERVER_ROOT_URL=http://grafana.localhost/
             - GF_SERVER_SERVE_FROM_SUB_PATH=tru
         restart: unless-stopped
         volumes:
@@ -178,6 +178,10 @@ services:
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
         restart: unless-stopped
+        profiles: ["update"]
+        environment:
+            WATCHTOWER_CLEANUP: "true"
+            WATCHTOWER_POLL_INTERVAL: 7200
         networks:
             - proxy_network
 
@@ -289,6 +293,53 @@ services:
         networks:
             - proxy_network
 
+    photoprism:
+        image: photoprism/photoprism:latest
+        container_name: photoprism
+        restart: unless-stopped
+        environment:
+            PHOTOPRISM_ADMIN_USER: "admin"
+            PHOTOPRISM_ADMIN_PASSWORD: "strongpassword"
+            PHOTOPRISM_AUTH_MODE: "password"
+            PHOTOPRISM_SITE_URL: "http://prism.localhost/"
+            PHOTOPRISM_BACKUP_ALBUMS: true
+            PHOTOPRISM_BACKUP_DATABASE: true
+            PHOTOPRISM_BACKUP_SCHEDULE: "daily"
+            PHOTOPRISM_DATABASE_DRIVER: "mysql"
+            PHOTOPRISM_DATABASE_SERVER: "mariadb:3306"
+            PHOTOPRISM_DATABASE_NAME: "${MARIADB_DATABASE:-photoprism}"
+            PHOTOPRISM_DATABASE_USER: "${MARIADB_USER:-photoprism}"
+            PHOTOPRISM_DATABASE_PASSWORD: "${MARIADB_PASSWORD:-insecure}"
+        volumes:
+            - /var/photos:/photoprism/originals
+            - photoprism_data:/photoprism/storage
+        depends_on:
+            - mariadb
+        networks:
+            - proxy_network
+        env_file:
+            - .env
+
+    mariadb:
+        image: mariadb:11
+        container_name: mariadb
+        restart: unless-stopped
+        stop_grace_period: 5s
+        command: --innodb-buffer-pool-size=512M --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
+        volumes:
+            - "mariadb_data:/var/lib/mysql"
+        environment:
+            MARIADB_AUTO_UPGRADE: "1"
+            MARIADB_INITDB_SKIP_TZINFO: "1"
+            MARIADB_DATABASE: "${MARIADB_DATABASE:-photoprism}"
+            MARIADB_USER: "${MARIADB_USER:-photoprism}"
+            MARIADB_PASSWORD: "${MARIADB_PASSWORD:-insecure}"
+            MARIADB_ROOT_PASSWORD: "insecure"
+        env_file:
+            - .env
+        networks:
+            - proxy_network
+
 networks:
     monitoring:
         driver: bridge
@@ -343,4 +394,10 @@ volumes:
         driver: local
     navidrome_data:
         name: navidrome_data
+        driver: local
+    photoprism_data:
+        name: photoprism_data
+        driver: local
+    mariadb_data:
+        name: mariadb_data
         driver: local
