@@ -280,6 +280,16 @@ services:
         env_file:
             - .env
 
+    filebrowser:
+        image: filebrowser/filebrowser
+        volumes:
+            - /path/to/root:/srv
+            - /path/filebrowser.db:/database.db
+            - /path/.filebrowser.json:/.filebrowser.json
+        restart: unless-stopped
+        networks:
+            - proxy_network
+
 networks:
     monitoring:
         driver: bridge

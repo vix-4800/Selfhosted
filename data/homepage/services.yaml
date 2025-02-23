@@ -53,6 +53,10 @@
             icon: navidrome.png
             href: http://navidrome.localhost/
             description: "Music library"
+      - Filebrowser:
+            icon: filebrowser.png
+            href: http://filebrowser.localhost/
+            description: "File management"
 
 - Network:
       - WireGuard:
