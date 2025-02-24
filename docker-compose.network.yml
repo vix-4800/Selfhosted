@@ -31,6 +31,11 @@ services:
         networks:
             - proxy_network
 
+networks:
+    proxy_network:
+        name: proxy_network
+        external: true
+
 volumes:
     wg-easy_data:
         name: wg-easy_data

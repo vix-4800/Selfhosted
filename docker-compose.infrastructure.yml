@@ -56,6 +56,14 @@ services:
         networks:
             - proxy_network
 
+networks:
+    proxy_network:
+        name: proxy_network
+        external: true
+    monitoring:
+        name: monitoring
+        external: true
+
 volumes:
     portainer_data:
         name: portainer_data
@@ -63,3 +71,15 @@ volumes:
     duplicati_data:
         name: duplicati_data
         driver: local
+    vaultwarden_data:
+        name: vaultwarden_data
+        external: true
+    mealie_data:
+        name: mealie_data
+        external: true
+    kavita_data:
+        name: kavita_data
+        external: true
+    syncthing_data:
+        name: syncthing_data
+        external: true
