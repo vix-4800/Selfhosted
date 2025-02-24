@@ -16,10 +16,6 @@
       - Watchtower:
             icon: watchtower.png
             description: Auto-update containers
-      - Duplicati:
-            icon: duplicati.png
-            href: http://duplicati.localhost/
-            description: "Backup software"
       - Nginx Proxy Manager:
             icon: nginx-proxy-manager.png
             href: http://npm.localhost/
