@@ -1,21 +1,4 @@
 services:
-    nginx-proxy-manager:
-        image: "jc21/nginx-proxy-manager:latest"
-        container_name: nginx-proxy-manager
-        restart: unless-stopped
-        ports:
-            - "80:80"
-            - "443:443"
-        networks:
-            - proxy_network
-            - monitoring
-        volumes:
-            - ./data/nginx:/data
-            - /etc/letsencrypt:/etc/letsencrypt
-        environment:
-            INITIAL_ADMIN_EMAIL: admin@example.com
-            INITIAL_ADMIN_PASSWORD: strongpassword
-
     homepage:
         image: ghcr.io/gethomepage/homepage:latest
         container_name: homepage
@@ -30,53 +13,6 @@ services:
                 limits:
                     cpus: "0.50"
                     memory: 256M
-
-    portainer:
-        image: portainer/portainer-ce:lts
-        container_name: portainer
-        restart: unless-stopped
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-            - portainer_data:/data
-        networks:
-            - proxy_network
-
-    uptime-kuma:
-        image: louislam/uptime-kuma:1
-        container_name: uptime-kuma
-        restart: unless-stopped
-        volumes:
-            - uptime-kuma_data:/app/data
-        networks:
-            - proxy_network
-        deploy:
-            resources:
-                limits:
-                    cpus: "0.1"
-                    memory: 128M
-
-    wg-easy:
-        image: ghcr.io/wg-easy/wg-easy
-        container_name: wg-easy
-        environment:
-            PORT: 51821
-            WG_PORT: 51820
-        volumes:
-            - wg-easy_data:/etc/wireguard
-        ports:
-            - "51820:51820/udp"
-            - "51821:51821/tcp"
-        cap_add:
-            - NET_ADMIN
-            - SYS_MODULE
-        sysctls:
-            net.ipv4.conf.all.src_valid_mark: 1
-            net.ipv4.ip_forward: 1
-        restart: unless-stopped
-        networks:
-            - proxy_network
-        env_file:
-            - .env
 
     syncthing:
         image: syncthing/syncthing:latest
@@ -93,98 +29,6 @@ services:
         networks:
             - proxy_network
 
-    grafana:
-        image: grafana/grafana-enterprise
-        container_name: grafana
-        networks:
-            - monitoring
-            - proxy_network
-        environment:
-            - GF_SERVER_ROOT_URL=http://grafana.localhost/
-            - GF_SERVER_SERVE_FROM_SUB_PATH=tru
-        restart: unless-stopped
-        volumes:
-            - grafana_data:/var/lib/grafana
-        deploy:
-            resources:
-                limits:
-                    cpus: "0.5"
-                    memory: 1024M
-
-    prometheus:
-        image: prom/prometheus
-        container_name: prometheus
-        networks:
-            - monitoring
-            - proxy_network
-        volumes:
-            - ./data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-            - prometheus_data:/prometheus
-        restart: unless-stopped
-        deploy:
-            resources:
-                limits:
-                    cpus: "2.0"
-                    memory: 4096M
-                reservations:
-                    memory: 512M
-
-    node-exporter:
-        image: quay.io/prometheus/node-exporter:latest
-        container_name: node-exporter
-        networks:
-            - monitoring
-            - proxy_network
-        volumes:
-            - "/:/host:ro,rslave"
-        command: --path.rootfs=/host
-        restart: unless-stopped
-        deploy:
-            resources:
-                limits:
-                    cpus: "0.1"
-                    memory: 64M
-
-    netdata:
-        image: netdata/netdata
-        container_name: netdata
-        pid: host
-        networks:
-            - monitoring
-        volumes:
-            - netdataconfig:/etc/netdata
-            - netdatalib:/var/lib/netdata
-            - netdatacache:/var/cache/netdata
-            - /:/host/root:ro,rslave
-            - /etc/passwd:/host/etc/passwd:ro
-            - /etc/group:/host/etc/group:ro
-            - /etc/localtime:/etc/localtime:ro
-            - /proc:/host/proc:ro
-            - /sys:/host/sys:ro
-            - /etc/os-release:/host/etc/os-release:ro
-            - /var/log:/host/var/log:ro
-            - /var/run/docker.sock:/var/run/docker.sock:ro
-            - /run/dbus:/run/dbus:ro
-        restart: unless-stopped
-        cap_add:
-            - SYS_PTRACE
-            - SYS_ADMIN
-        security_opt:
-            - apparmor=unconfined
-
-    watchtower:
-        image: containrrr/watchtower
-        container_name: watchtower
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-        restart: unless-stopped
-        profiles: ["update"]
-        environment:
-            WATCHTOWER_CLEANUP: "true"
-            WATCHTOWER_POLL_INTERVAL: 7200
-        networks:
-            - proxy_network
-
     vaultwarden:
         image: vaultwarden/server:latest
         container_name: vaultwarden
@@ -196,94 +40,6 @@ services:
         networks:
             - proxy_network
 
-    mealie:
-        image: ghcr.io/mealie-recipes/mealie:v2.6.0
-        container_name: mealie
-        restart: unless-stopped
-        volumes:
-            - mealie_data:/app/data/
-        environment:
-            ALLOW_SIGNUP: false
-            PUID: 1000
-            PGID: 1000
-            MAX_WORKERS: 2
-            WEB_CONCURRENCY: 1
-            SECURITY_MAX_LOGIN_ATTEMPTS: 5
-            SECURITY_USER_LOCKOUT_TIME: 1
-        env_file:
-            - .env
-        networks:
-            - proxy_network
-        deploy:
-            resources:
-                limits:
-                    memory: 1000M
-
-    kavita:
-        image: jvmilazz0/kavita:latest
-        container_name: kavita
-        volumes:
-            - /var/data/comics:/comics
-            - /var/data/books:/books
-            - /var/data/manga:/manga
-            - kavita_data:/kavita/config
-        restart: unless-stopped
-        env_file:
-            - .env
-        networks:
-            - proxy_network
-        deploy:
-            resources:
-                limits:
-                    cpus: "0.75"
-                    memory: 768M
-
-    duplicati:
-        image: lscr.io/linuxserver/duplicati:latest
-        container_name: duplicati
-        volumes:
-            - duplicati_data:/config
-            - /var/backups:/backups
-            - vaultwarden_data:/source/vaultwarden
-            - mealie_data:/source/mealie
-            - kavita_data:/source/kavita
-            - syncthing_data:/source/syncthing
-        restart: unless-stopped
-        env_file:
-            - .env
-        networks:
-            - proxy_network
-
-    adguard:
-        image: adguard/adguardhome
-        container_name: adguard
-        restart: unless-stopped
-        volumes:
-            - adguard_data:/opt/adguardhome/work
-            - adguard_config:/opt/adguardhome/conf
-        networks:
-            - proxy_network
-
-    navidrome:
-        image: deluan/navidrome:latest
-        container_name: navidrome
-        restart: unless-stopped
-        volumes:
-            - "navidrome_data:/data"
-            - "/var/music:/music:ro"
-        networks:
-            - proxy_network
-        environment:
-            ND_SCANSCHEDULE: "@every 1h"
-            ND_LOGLEVEL: "info"
-            ND_UIWELCOMEMESSAGE: "Welcome Back!"
-            ND_DEFAULTTHEME: "Dark"
-            ND_ENABLECOVERANIMATION: "true"
-            ND_ENABLEDOWNLOADS: "true"
-            ND_SESSIONTIMEOUT: "24h"
-        env_file:
-            - .env
-
     tinyfilemanager:
         image: tinyfilemanager/tinyfilemanager:master
         container_name: tinyfilemanager
@@ -292,33 +48,6 @@ services:
             - /:/var/www/html
         networks:
             - proxy_network
-
-    photoprism:
-        image: photoprism/photoprism:latest
-        container_name: photoprism
-        restart: unless-stopped
-        environment:
-            PHOTOPRISM_ADMIN_USER: "admin"
-            PHOTOPRISM_ADMIN_PASSWORD: "strongpassword"
-            PHOTOPRISM_AUTH_MODE: "password"
-            PHOTOPRISM_SITE_URL: "http://prism.localhost/"
-            PHOTOPRISM_BACKUP_ALBUMS: true
-            PHOTOPRISM_BACKUP_DATABASE: true
-            PHOTOPRISM_BACKUP_SCHEDULE: "daily"
-            PHOTOPRISM_DATABASE_DRIVER: "mysql"
-            PHOTOPRISM_DATABASE_SERVER: "mariadb:3306"
-            PHOTOPRISM_DATABASE_NAME: "${MARIADB_DATABASE:-photoprism}"
-            PHOTOPRISM_DATABASE_USER: "${MARIADB_USER:-photoprism}"
-            PHOTOPRISM_DATABASE_PASSWORD: "${MARIADB_PASSWORD:-insecure}"
-        volumes:
-            - /var/photos:/photoprism/originals
-            - photoprism_data:/photoprism/storage
-        depends_on:
-            - mariadb
-        networks:
-            - proxy_network
-        env_file:
-            - .env
 
     mariadb:
         image: mariadb:11
@@ -341,62 +70,15 @@ services:
             - proxy_network
 
 networks:
-    monitoring:
-        driver: bridge
     proxy_network:
         driver: bridge
 
 volumes:
-    portainer_data:
-        name: portainer_data
-        driver: local
-    uptime-kuma_data:
-        name: uptime-kuma_data
-        driver: local
-    wg-easy_data:
-        name: wg-easy_data
-        driver: local
     syncthing_data:
         name: syncthing_data
         driver: local
-    prometheus_data:
-        name: prometheus_data
-        driver: local
-    netdataconfig:
-        name: netdataconfig
-        driver: local
-    netdatalib:
-        name: netdatalib
-        driver: local
-    netdatacache:
-        name: netdatacache
-        driver: local
-    grafana_data:
-        name: grafana_data
-        driver: local
     vaultwarden_data:
         name: vaultwarden_data
-        driver: local
-    mealie_data:
-        name: mealie_data
-        driver: local
-    kavita_data:
-        name: kavita_data
-        driver: local
-    duplicati_data:
-        name: duplicati_data
-        driver: local
-    adguard_data:
-        name: adguard_data
-        driver: local
-    adguard_config:
-        name: adguard_config
-        driver: local
-    navidrome_data:
-        name: navidrome_data
-        driver: local
-    photoprism_data:
-        name: photoprism_data
         driver: local
     mariadb_data:
         name: mariadb_data

@@ -1,0 +1,64 @@
+services:
+    nginx-proxy-manager:
+        image: "jc21/nginx-proxy-manager:latest"
+        container_name: nginx-proxy-manager
+        restart: unless-stopped
+        ports:
+            - "80:80"
+            - "443:443"
+        networks:
+            - proxy_network
+            - monitoring
+        volumes:
+            - ./data/nginx:/data
+            - /etc/letsencrypt:/etc/letsencrypt
+        environment:
+            INITIAL_ADMIN_EMAIL: admin@example.com
+            INITIAL_ADMIN_PASSWORD: strongpassword
+
+    portainer:
+        image: portainer/portainer-ce:lts
+        container_name: portainer
+        restart: unless-stopped
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - portainer_data:/data
+        networks:
+            - proxy_network
+
+    watchtower:
+        image: containrrr/watchtower
+        container_name: watchtower
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        restart: unless-stopped
+        profiles: ["update"]
+        environment:
+            WATCHTOWER_CLEANUP: "true"
+            WATCHTOWER_POLL_INTERVAL: 7200
+        networks:
+            - proxy_network
+
+    duplicati:
+        image: lscr.io/linuxserver/duplicati:latest
+        container_name: duplicati
+        volumes:
+            - duplicati_data:/config
+            - /var/backups:/backups
+            - vaultwarden_data:/source/vaultwarden
+            - mealie_data:/source/mealie
+            - kavita_data:/source/kavita
+            - syncthing_data:/source/syncthing
+        restart: unless-stopped
+        env_file:
+            - .env
+        networks:
+            - proxy_network
+
+volumes:
+    portainer_data:
+        name: portainer_data
+        driver: local
+    duplicati_data:
+        name: duplicati_data
+        driver: local
