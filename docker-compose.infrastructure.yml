@@ -40,6 +40,15 @@ services:
         env_file:
             - .env
 
+    adminer:
+        image: adminer
+        container_name: adminer
+        restart: unless-stopped
+        environment:
+            ADMINER_DEFAULT_SERVER: database
+        networks:
+            - proxy_network
+
 networks:
     proxy_network:
         name: proxy_network

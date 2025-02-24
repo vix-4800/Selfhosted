@@ -9,6 +9,10 @@
                 timezone: Europe/Saratov
 
 - Infrastructure:
+      - Nginx Proxy Manager:
+            icon: nginx-proxy-manager.png
+            href: http://npm.localhost/
+            description: "Management of Nginx reverse proxy"
       - Portainer:
             icon: portainer.png
             href: http://portainer.localhost/
@@ -16,10 +20,10 @@
       - Watchtower:
             icon: watchtower.png
             description: Auto-update containers
-      - Nginx Proxy Manager:
-            icon: nginx-proxy-manager.png
-            href: http://npm.localhost/
-            description: "Management of Nginx reverse proxy"
+      - Adminer:
+            icon: adminer.png
+            href: http://adminer.localhost/
+            description: "Database management"
 
 - Monitoring:
       - Netdata:
