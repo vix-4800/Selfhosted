@@ -4,23 +4,15 @@ services:
         container_name: photoprism
         restart: unless-stopped
         environment:
-            PHOTOPRISM_ADMIN_USER: "admin"
-            PHOTOPRISM_ADMIN_PASSWORD: "strongpassword"
             PHOTOPRISM_AUTH_MODE: "password"
             PHOTOPRISM_SITE_URL: "http://prism.localhost/"
-            PHOTOPRISM_BACKUP_ALBUMS: true
-            PHOTOPRISM_BACKUP_DATABASE: true
-            PHOTOPRISM_BACKUP_SCHEDULE: "daily"
             PHOTOPRISM_DATABASE_DRIVER: "mysql"
-            PHOTOPRISM_DATABASE_SERVER: "mariadb:3306"
-            PHOTOPRISM_DATABASE_NAME: "${MARIADB_DATABASE:-photoprism}"
-            PHOTOPRISM_DATABASE_USER: "${MARIADB_USER:-photoprism}"
-            PHOTOPRISM_DATABASE_PASSWORD: "${MARIADB_PASSWORD:-insecure}"
+            PHOTOPRISM_DATABASE_SERVER: "database:3306"
         volumes:
             - /var/photos:/photoprism/originals
             - photoprism_data:/photoprism/storage
         depends_on:
-            - mariadb
+            - database
         networks:
             - proxy_network
         env_file:
@@ -35,14 +27,6 @@ services:
             - "/var/music:/music:ro"
         networks:
             - proxy_network
-        environment:
-            ND_SCANSCHEDULE: "@every 1h"
-            ND_LOGLEVEL: "info"
-            ND_UIWELCOMEMESSAGE: "Welcome Back!"
-            ND_DEFAULTTHEME: "Dark"
-            ND_ENABLECOVERANIMATION: "true"
-            ND_ENABLEDOWNLOADS: "true"
-            ND_SESSIONTIMEOUT: "24h"
         env_file:
             - .env
 
@@ -72,13 +56,11 @@ services:
         volumes:
             - mealie_data:/app/data/
         environment:
-            ALLOW_SIGNUP: false
-            PUID: 1000
-            PGID: 1000
-            MAX_WORKERS: 2
-            WEB_CONCURRENCY: 1
-            SECURITY_MAX_LOGIN_ATTEMPTS: 5
-            SECURITY_USER_LOCKOUT_TIME: 1
+            ALLOW_SIGNUP: ${MEALIE_ALLOW_SIGNUP}
+            MAX_WORKERS: ${MEALIE_MAX_WORKERS}
+            WEB_CONCURRENCY: ${MEALIE_WEB_CONCURRENCY}
+            SECURITY_MAX_LOGIN_ATTEMPTS: ${MEALIE_SECURITY_MAX_LOGIN_ATTEMPTS}
+            SECURITY_USER_LOCKOUT_TIME: ${MEALIE_SECURITY_USER_LOCKOUT_TIME}
         env_file:
             - .env
         networks:

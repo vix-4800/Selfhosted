@@ -4,7 +4,6 @@ services:
         container_name: wg-easy
         environment:
             PORT: 51821
-            WG_PORT: 51820
         volumes:
             - wg-easy_data:/etc/wireguard
         ports:
