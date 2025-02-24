@@ -45,7 +45,7 @@ services:
         container_name: tinyfilemanager
         restart: unless-stopped
         volumes:
-            - /home/${USERNAME}:/var/www/html
+            - /home/${USERNAME}:/var/www/html/data
         networks:
             - proxy_network
 
