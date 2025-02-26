@@ -69,6 +69,7 @@ services:
             resources:
                 limits:
                     memory: 1000M
+
 networks:
     proxy_network:
         name: proxy_network
