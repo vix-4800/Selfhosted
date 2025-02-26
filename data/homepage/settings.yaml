@@ -1,9 +1,11 @@
-headerStyle: faded
+headerStyle: none # boxed | underlined | clean | boxedWidgets
+base: localhost
 theme: dark
 language: en
 color: indigo
 useEqualHeights: true
 hideVersion: false
+disableCollapse: true
 
 background:
     image: https://wallpapercave.com/wp/wp4565843.jpg

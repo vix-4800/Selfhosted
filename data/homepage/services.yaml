@@ -13,81 +13,119 @@
             icon: nginx-proxy-manager.png
             href: http://npm.localhost/
             description: "Management of Nginx reverse proxy"
+            container: nginx-proxy-manager
+            statusStyle: "dot"
       - Portainer:
             icon: portainer.png
             href: http://portainer.localhost/
             description: "Management of Docker containers"
+            container: portainer
+            statusStyle: "dot"
       - Watchtower:
             icon: watchtower.png
-            description: Auto-update containers
+            description: "Auto-update containers"
+            container: watchtower
+            statusStyle: "dot"
       - Adminer:
             icon: adminer.png
             href: http://adminer.localhost/
             description: "Database management"
+            container: adminer
+            statusStyle: "dot"
       - Gitea:
             icon: gitea.png
             href: http://gitea.localhost/
             description: "Git repositories management"
+            container: gitea
+            statusStyle: "dot"
 
 - Monitoring:
       - Netdata:
             icon: netdata.png
             href: http://netdata.localhost/
             description: "Server resource monitoring"
+            container: netdata
+            statusStyle: "dot"
       - Grafana:
             icon: grafana.png
             href: http://grafana.localhost/
             description: "Monitoring of servers"
+            container: grafana
+            statusStyle: "dot"
       - Node Exporter:
             icon: prometheus.png
             description: Hardware metrics
+            container: node-exporter
+            statusStyle: "dot"
       - Prometheus:
             icon: prometheus.png
             href: http://prometheus.localhost/
             description: Time-series database
-      - "Uptime Kuma":
+            container: prometheus
+            statusStyle: "dot"
+      - Uptime Kuma:
             icon: uptime-kuma.png
             href: http://uptime.localhost/
             description: "Availability monitoring"
+            container: uptime-kuma
+            statusStyle: "dot"
 
 - Media:
       - Syncthing:
             icon: syncthing.png
             href: http://syncthing.localhost/
             description: "File synchronization"
+            container: syncthing
+            statusStyle: "dot"
       - Mealie:
             icon: mealie.png
             href: http://mealie.localhost/
             description: "Recipe management"
+            container: mealie
+            statusStyle: "dot"
       - Kavita:
             icon: kavita.png
             href: http://kavita.localhost/
             description: "Book reader"
+            container: kavita
+            statusStyle: "dot"
       - Navidrome:
             icon: navidrome.png
             href: http://navidrome.localhost/
             description: "Music library"
+            container: navidrome
+            statusStyle: "dot"
       - Tinyfilemanager:
             icon: tinyfilemanager.png
             href: http://files.localhost/
             description: "File management"
+            container: tinyfilemanager
+            statusStyle: "dot"
       - Photoprism:
             icon: photoprism.png
             href: http://prism.localhost/
             description: "Photo management"
+            container: photoprism
+            statusStyle: "dot"
 
 - Network:
       - WireGuard:
             icon: wireguard.png
             href: http://wg.localhost/
             description: "VPN server"
+            container: wg-easy
+            statusStyle: "dot"
       - AdGuard Home:
             icon: adguard.png
             href: http://adguard.localhost/
             description: "Ad blocking"
+            container: adguard
+            statusStyle: "dot"
 
 - Security:
       - Vaultwarden:
             icon: vaultwarden.png
             href: http://vaultwarden.localhost/
             description: "Password manager"
+            container: vaultwarden
+            statusStyle: "dot"
