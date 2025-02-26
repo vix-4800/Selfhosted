@@ -79,9 +79,6 @@ networks:
     proxy_network:
         name: proxy_network
         external: true
-    monitoring:
-        name: monitoring
-        external: true
 
 volumes:
     kavita_data:

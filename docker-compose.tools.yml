@@ -13,6 +13,11 @@ services:
         restart: unless-stopped
         networks:
             - proxy_network
+        healthcheck:
+            test: curl -fkLsS -m 2 localhost:8384/rest/noauth/health | grep -o --color=never OK || exit 1
+            interval: 1m
+            timeout: 10s
+            retries: 3
 
     vaultwarden:
         image: vaultwarden/server:latest
