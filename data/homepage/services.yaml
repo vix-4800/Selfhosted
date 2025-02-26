@@ -107,6 +107,12 @@
             description: "Photo management"
             container: photoprism
             statusStyle: "dot"
+      - Home Assistant:
+            icon: homeassistant.png
+            href: http://homeassistant.localhost/
+            description: "Home automation"
+            container: homeassistant
+            statusStyle: "dot"
 
 - Network:
       - WireGuard:
