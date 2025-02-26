@@ -20,7 +20,7 @@ layout:
     Calendar:
     Infrastructure:
         style: row
-        columns: 4
+        columns: 5
     Monitoring:
         style: row
         columns: 5

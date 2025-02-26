@@ -25,6 +25,26 @@ services:
         networks:
             - proxy_network
 
+    gitea:
+        image: docker.io/gitea/gitea:nightly
+        container_name: gitea
+        environment:
+            - USER_UID=${PUID}
+            - USER_GID=${PGID}
+            - GITEA__database__DB_TYPE=mysql
+            - GITEA__database__HOST=database:3306
+            - GITEA__mailer__ENABLED=true
+            - GITEA__mailer__PROTOCOL=smtps
+        restart: unless-stopped
+        networks:
+            - proxy_network
+        volumes:
+            - gitea_data:/data
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
+        env_file:
+            - .env
+
 networks:
     proxy_network:
         name: proxy_network
@@ -36,4 +56,7 @@ volumes:
         driver: local
     vaultwarden_data:
         name: vaultwarden_data
+        driver: local
+    gitea_data:
+        name: gitea_data
         driver: local

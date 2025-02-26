@@ -24,6 +24,10 @@
             icon: adminer.png
             href: http://adminer.localhost/
             description: "Database management"
+      - Gitea:
+            icon: gitea.png
+            href: http://gitea.localhost/
+            description: "Git repositories management"
 
 - Monitoring:
       - Netdata:
