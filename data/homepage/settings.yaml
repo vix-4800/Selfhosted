@@ -8,11 +8,11 @@ hideVersion: false
 disableCollapse: true
 
 background:
-    image: https://wallpapercave.com/wp/wp4565843.jpg
-    blur: md
+    image: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperwaifu.com%2Fwp-content%2Fuploads%2F2022%2F12%2Fzaun-arcane-thumb.jpg&f=1&nofb=1&ipt=838c169c54fe5a57942692a25fe304a2834bd878e5dad48251865ac6b83582a8&ipo=images
+    blur: md # sm | md | xl
     saturate: 50
     brightness: 50
-    opacity: 70
+    opacity: 80
 
 layout:
     AI's:
