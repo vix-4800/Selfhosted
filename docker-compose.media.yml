@@ -51,7 +51,7 @@ services:
         deploy:
             resources:
                 limits:
-                    cpus: 0.75
+                    cpus: "0.75"
                     memory: 768M
 
     mealie:

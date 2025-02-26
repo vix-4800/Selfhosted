@@ -11,7 +11,7 @@ services:
         deploy:
             resources:
                 limits:
-                    cpus: 0.1
+                    cpus: "0.1"
                     memory: 128M
 
     grafana:
@@ -29,7 +29,7 @@ services:
         deploy:
             resources:
                 limits:
-                    cpus: 0.5
+                    cpus: "0.5"
                     memory: 1024M
 
     prometheus:
@@ -45,7 +45,7 @@ services:
         deploy:
             resources:
                 limits:
-                    cpus: 2.0
+                    cpus: "2.0"
                     memory: 4096M
                 reservations:
                     memory: 512M
@@ -69,7 +69,7 @@ services:
         deploy:
             resources:
                 limits:
-                    cpus: 0.1
+                    cpus: "0.1"
                     memory: 64M
 
     netdata:
