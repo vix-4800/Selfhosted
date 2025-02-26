@@ -4,9 +4,9 @@ services:
         container_name: syncthing
         hostname: syncthing
         ports:
-            - "22000:22000/tcp"
-            - "22000:22000/udp"
-            - "21027:21027/udp"
+            - 22000:22000/tcp
+            - 22000:22000/udp
+            - 21027:21027/udp
         volumes:
             - /var/syncthing:/var/syncthing
             - syncthing_data:/var/data
@@ -21,7 +21,7 @@ services:
             - vaultwarden_data:/data/
         restart: unless-stopped
         environment:
-            - ROCKET_WEB_VAULT_PREFIX=/vaultwarden
+            ROCKET_WEB_VAULT_PREFIX: /vaultwarden
         networks:
             - proxy_network
 
@@ -29,12 +29,15 @@ services:
         image: docker.io/gitea/gitea:nightly
         container_name: gitea
         environment:
-            - USER_UID=${PUID}
-            - USER_GID=${PGID}
-            - GITEA__database__DB_TYPE=mysql
-            - GITEA__database__HOST=database:3306
-            - GITEA__mailer__ENABLED=true
-            - GITEA__mailer__PROTOCOL=smtps
+            USER_UID: ${PUID}
+            USER_GID: ${PGID}
+            GITEA__database__DB_TYPE: mysql
+            GITEA__database__HOST: database:3306
+            GITEA__database__NAME: ${GITEA_DATABASE_NAME}
+            GITEA__database__USER: ${GITEA_DATABASE_USER}
+            GITEA__database__PASSWD: ${GITEA_DATABASE_PASSWORD}
+            GITEA__mailer__ENABLED: true
+            GITEA__mailer__PROTOCOL: smtps
         restart: unless-stopped
         networks:
             - proxy_network

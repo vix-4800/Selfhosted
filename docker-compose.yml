@@ -11,7 +11,7 @@ services:
         deploy:
             resources:
                 limits:
-                    cpus: "0.50"
+                    cpus: 0.50
                     memory: 256M
 
     tinyfilemanager:
@@ -30,11 +30,12 @@ services:
         stop_grace_period: 5s
         command: --innodb-buffer-pool-size=512M --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
         volumes:
-            - "database_data:/var/lib/mysql"
+            - database_data:/var/lib/mysql
+            - ./data/database:/docker-entrypoint-initdb.d
         environment:
-            MARIADB_AUTO_UPGRADE: "1"
-            MARIADB_INITDB_SKIP_TZINFO: "1"
-            MARIADB_ROOT_PASSWORD: "insecure"
+            MARIADB_AUTO_UPGRADE: 1
+            MARIADB_INITDB_SKIP_TZINFO: 1
+            MARIADB_ROOT_PASSWORD: insecure
         env_file:
             - .env
         networks:
