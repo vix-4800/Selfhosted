@@ -14,32 +14,6 @@ services:
                     cpus: "0.50"
                     memory: 256M
 
-    syncthing:
-        image: syncthing/syncthing:latest
-        container_name: syncthing
-        hostname: syncthing
-        ports:
-            - "22000:22000/tcp"
-            - "22000:22000/udp"
-            - "21027:21027/udp"
-        volumes:
-            - /var/syncthing:/var/syncthing
-            - syncthing_data:/var/data
-        restart: unless-stopped
-        networks:
-            - proxy_network
-
-    vaultwarden:
-        image: vaultwarden/server:latest
-        container_name: vaultwarden
-        volumes:
-            - vaultwarden_data:/data/
-        restart: unless-stopped
-        environment:
-            - ROCKET_WEB_VAULT_PREFIX=/vaultwarden
-        networks:
-            - proxy_network
-
     tinyfilemanager:
         image: tinyfilemanager/tinyfilemanager:master
         container_name: tinyfilemanager
@@ -72,12 +46,6 @@ networks:
         driver: bridge
 
 volumes:
-    syncthing_data:
-        name: syncthing_data
-        driver: local
-    vaultwarden_data:
-        name: vaultwarden_data
-        driver: local
     database_data:
         name: database_data
         driver: local
