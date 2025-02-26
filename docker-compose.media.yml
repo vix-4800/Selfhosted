@@ -29,6 +29,9 @@ services:
             - /var/music:/music:ro
         networks:
             - proxy_network
+        environment:
+            ND_PROMETHEUS_ENABLED: true
+            ND_PROMETHEUS_METRICSPATH: /metrics
         env_file:
             - .env
 
@@ -75,6 +78,9 @@ services:
 networks:
     proxy_network:
         name: proxy_network
+        external: true
+    monitoring:
+        name: monitoring
         external: true
 
 volumes:
