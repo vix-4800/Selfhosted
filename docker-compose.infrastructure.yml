@@ -6,11 +6,12 @@ services:
         ports:
             - "80:80"
             - "443:443"
+            - "81:81"
         networks:
             - proxy_network
             - monitoring
         volumes:
-            - ./data/nginx:/data
+            - nginx-proxy-manager_data:/data
             - /etc/letsencrypt:/etc/letsencrypt
         environment:
             INITIAL_ADMIN_EMAIL: ${NGINX_PROXY_MANAGER_ADMIN_EMAIL}
@@ -63,4 +64,7 @@ volumes:
         driver: local
     duplicati_data:
         name: duplicati_data
+        driver: local
+    nginx-proxy-manager_data:
+        name: nginx-proxy-manager_data
         driver: local
