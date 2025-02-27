@@ -31,6 +31,8 @@ services:
                 limits:
                     cpus: "0.5"
                     memory: 1024M
+        depends_on:
+            - prometheus
 
     prometheus:
         image: prom/prometheus
@@ -49,12 +51,6 @@ services:
                     memory: 4096M
                 reservations:
                     memory: 512M
-        healthcheck:
-            test: ["CMD", "wget", "http://localhost:9090"]
-            interval: 10s
-            timeout: 15s
-            retries: 10
-            start_period: 40s
 
     node-exporter:
         image: quay.io/prometheus/node-exporter:latest
@@ -99,6 +95,28 @@ services:
             - SYS_ADMIN
         security_opt:
             - apparmor=unconfined
+
+    cadvisor:
+        image: gcr.io/cadvisor/cadvisor
+        container_name: cadvisor
+        privileged: true
+        restart: unless-stopped
+        networks:
+            - monitoring
+            - proxy_network
+        volumes:
+            - /:/rootfs:ro
+            - /var/run:/var/run:ro
+            - /sys:/sys:ro
+            - /var/lib/docker/:/var/lib/docker:ro
+            - /dev/disk/:/dev/disk:ro
+        devices:
+            - /dev/kmsg
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.1"
+                    memory: 64M
 
 networks:
     proxy_network:

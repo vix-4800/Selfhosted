@@ -69,6 +69,12 @@
             description: "Availability monitoring"
             container: uptime-kuma
             statusStyle: "dot"
+      - cAdvisor:
+            icon: cadvisor.png
+            href: http://cadvisor.localhost/
+            description: "Container resource usage and performance"
+            container: cadvisor
+            statusStyle: "dot"
 
 - Media:
       - Syncthing:
