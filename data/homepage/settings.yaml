@@ -1,4 +1,4 @@
-headerStyle: none # boxed | underlined | clean | boxedWidgets
+headerStyle: clean # boxed | underlined | clean | boxedWidgets
 base: localhost
 theme: dark
 language: en
