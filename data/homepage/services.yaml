@@ -34,7 +34,7 @@
             statusStyle: "dot"
       - Gitea:
             icon: gitea.png
-            href: http://gitea.localhost/
+            href: http://git.localhost/
             description: "Git repositories management"
             container: gitea
             statusStyle: "dot"
