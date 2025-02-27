@@ -30,13 +30,13 @@ scrape_configs:
       basic_auth: # Only needed if authentication is enabled (default)
           username: <your user>
           password: <your password>
-    - job_name: navidrome # Grafana dashboard id: 18038
+    - job_name: navidrome
       metrics_path: /metrics
       scrape_interval: 10s
       scheme: http
       static_configs:
           - targets: ["navidrome:4533"]
-    - job_name: cadvisor # Grafana dashboard id: 13946
+    - job_name: cadvisor
       scrape_interval: 15s
       scheme: http
       metrics_path: /metrics
