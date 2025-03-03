@@ -1,23 +1,27 @@
-# Proxy Hosts and Ports
+This repository contains docker-compose files for various self-hosted services.
 
--   Homepage - homepage:3000
--   Nginx Proxy Manager - nginx-proxy-manager:81
--   Gitea - gitea:3000
--   Kavita - kavita:5000
--   NetData - netdata:19999
--   AdGuard - adguard:3000
--   Navidrome - navidrome:4533
--   Tinyfilemanager - tinyfilemanager:80
--   Photoprism - photoprism:2342
--   Mealie - mealie:9000
--   Adminer - adminer:8080
--   Portainer - portainer:9000
--   Uptime Kuma - uptime-kuma:3001
--   WireGuard - wg-easy:51821
--   SyncThing - syncthing:8384
--   Grafana - grafana:3000
--   Prometheus - prometheus:9090
--   Vaultwarden - vaultwarden:80
+# Services
+
+| Service             | Description               | Port  | Container Name      |
+| ------------------- | ------------------------- | ----- | ------------------- |
+| Homepage            | Homepage                  | 3000  | homepage            |
+| Nginx Proxy Manager | Reverse proxy manager     | 81    | nginx-proxy-manager |
+| Gitea               | Self-hosted git service   | 3000  | gitea               |
+| Kavita              | Comic service             | 5000  | kavita              |
+| NetData             | System monitoring service | 19999 | netdata             |
+| AdGuard             | Ad blocker                | 3000  | adguard             |
+| Navidrome           | Music service             | 4533  | navidrome           |
+| Tinyfilemanager     | File manager              | 80    | tinyfilemanager     |
+| Photoprism          | Photo service             | 2342  | photoprism          |
+| Mealie              | Recipe service            | 9000  | mealie              |
+| Adminer             | Database manager          | 8080  | adminer             |
+| Portainer           | Docker container manager  | 9000  | portainer           |
+| Uptime Kuma         | Uptime monitoring         | 3001  | uptime-kuma         |
+| WireGuard           | Self-hosted VPN           | 51821 | wg-easy             |
+| SyncThing           | File sync                 | 8384  | syncthing           |
+| Grafana             | Monitoring dashboards     | 3000  | grafana             |
+| Prometheus          | Monitoring service        | 9090  | prometheus          |
+| Vaultwarden         | Password manager          | 80    | vaultwarden         |
 
 # Grafana Dashboard Id's
 
