@@ -118,6 +118,15 @@ services:
                     cpus: "0.1"
                     memory: 64M
 
+    myspeed:
+        container_name: myspeed
+        image: "germannewsmaker/myspeed"
+        restart: unless-stopped
+        volumes:
+            - myspeed_data:/myspeed/data
+        networks:
+            - proxy_network
+
 networks:
     proxy_network:
         name: proxy_network
@@ -144,4 +153,7 @@ volumes:
         driver: local
     grafana_data:
         name: grafana_data
+        driver: local
+    myspeed_data:
+        name: myspeed_data
         driver: local

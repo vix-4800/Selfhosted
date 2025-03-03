@@ -22,6 +22,7 @@ This repository contains docker-compose files for various self-hosted services.
 | Grafana             | Monitoring dashboards     | 3000  | grafana             |
 | Prometheus          | Monitoring service        | 9090  | prometheus          |
 | Vaultwarden         | Password manager          | 80    | vaultwarden         |
+| MySpeed             | Internet speed test       | 5216  | myspeed             |
 
 # Grafana Dashboard Id's
 

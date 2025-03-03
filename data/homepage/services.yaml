@@ -11,12 +11,14 @@
 - Infrastructure:
       - Nginx Proxy Manager:
             icon: nginx-proxy-manager.png
+            type: npm
             href: http://npm.localhost/
             description: "Management of Nginx reverse proxy"
             container: nginx-proxy-manager
             statusStyle: "dot"
       - Portainer:
             icon: portainer.png
+            type: portainer
             href: http://portainer.localhost/
             description: "Management of Docker containers"
             container: portainer
@@ -34,6 +36,7 @@
             statusStyle: "dot"
       - Gitea:
             icon: gitea.png
+            type: gitea
             href: http://git.localhost/
             description: "Git repositories management"
             container: gitea
@@ -42,12 +45,14 @@
 - Monitoring:
       - Netdata:
             icon: netdata.png
+            type: netdata
             href: http://netdata.localhost/
             description: "Server resource monitoring"
             container: netdata
             statusStyle: "dot"
       - Grafana:
             icon: grafana.png
+            type: grafana
             href: http://grafana.localhost/
             description: "Monitoring of servers"
             container: grafana
@@ -59,12 +64,14 @@
             statusStyle: "dot"
       - Prometheus:
             icon: prometheus.png
+            type: prometheus
             href: http://prometheus.localhost/
             description: Time-series database
             container: prometheus
             statusStyle: "dot"
       - Uptime Kuma:
             icon: uptime-kuma.png
+            type: uptimekuma
             href: http://uptime.localhost/
             description: "Availability monitoring"
             container: uptime-kuma
@@ -75,28 +82,39 @@
             description: "Container resource usage and performance"
             container: cadvisor
             statusStyle: "dot"
+      - MySpeed:
+            icon: myspeed.png
+            type: myspeed
+            href: http://myspeed.localhost/
+            description: "Internet speed test"
+            container: myspeed
+            statusStyle: "dot"
 
 - Media:
       - Syncthing:
             icon: syncthing.png
+            type: strelaysrv
             href: http://syncthing.localhost/
             description: "File synchronization"
             container: syncthing
             statusStyle: "dot"
       - Mealie:
             icon: mealie.png
+            type: mealie
             href: http://mealie.localhost/
             description: "Recipe management"
             container: mealie
             statusStyle: "dot"
       - Kavita:
             icon: kavita.png
+            type: kavita
             href: http://kavita.localhost/
             description: "Book reader"
             container: kavita
             statusStyle: "dot"
       - Navidrome:
             icon: navidrome.png
+            type: navidrome
             href: http://navidrome.localhost/
             description: "Music library"
             container: navidrome
@@ -109,12 +127,14 @@
             statusStyle: "dot"
       - Photoprism:
             icon: photoprism.png
+            type: photoprism
             href: http://prism.localhost/
             description: "Photo management"
             container: photoprism
             statusStyle: "dot"
       - Home Assistant:
             icon: homeassistant.png
+            type: homeassistant
             href: http://homeassistant.localhost/
             description: "Home automation"
             container: homeassistant
@@ -123,12 +143,14 @@
 - Network:
       - WireGuard:
             icon: wireguard.png
+            type: wgeasy
             href: http://wg.localhost/
             description: "VPN server"
             container: wg-easy
             statusStyle: "dot"
       - AdGuard Home:
             icon: adguard.png
+            type: adguard
             href: http://adguard.localhost/
             description: "Ad blocking"
             container: adguard
