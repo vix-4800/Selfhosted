@@ -89,6 +89,13 @@
             description: "Internet speed test"
             container: myspeed
             statusStyle: "dot"
+      - Gotify:
+            icon: gotify.png
+            type: gotify
+            href: http://gotify.localhost/
+            description: "Push notifications"
+            container: gotify
+            statusStyle: "dot"
 
 - Media:
       - Syncthing:
