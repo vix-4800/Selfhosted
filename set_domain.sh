@@ -17,14 +17,18 @@ validate_domain() {
     fi
 }
 
-while true; do
-    read -p "Enter domain (without (http/https)://, example: example.com): " new_domain
-    if validate_domain "$new_domain"; then
-        break
-    else
-        echo "Domain is invalid!"
-    fi
-done
+# Get new domain
+new_domain=${1:-}
+if [ -z "$new_domain" ]; then
+    while true; do
+        read -p "Enter domain (without (http/https)://, example: example.com): " new_domain
+        if validate_domain "$new_domain"; then
+            break
+        else
+            echo "Domain is invalid!"
+        fi
+    done
+fi
 
 # Backup
 backup_file="${SERVICES_FILE}.bak"
