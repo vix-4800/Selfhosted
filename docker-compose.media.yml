@@ -13,8 +13,6 @@ services:
         volumes:
             - /var/photos:/photoprism/originals
             - photoprism_data:/photoprism/storage
-        depends_on:
-            - database
         networks:
             - proxy_network
         env_file:
