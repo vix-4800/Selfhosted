@@ -32,6 +32,8 @@ services:
         restart: unless-stopped
         networks:
             - proxy_network
+        env_file:
+            - .env
         deploy:
             resources:
                 limits:
