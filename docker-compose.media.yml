@@ -73,6 +73,25 @@ services:
                 limits:
                     memory: 1000M
 
+    nextcloud:
+        image: nextcloud:fpm
+        container_name: nextcloud
+        restart: unless-stopped
+        # depends_on:
+        # - redis
+        # - database
+        volumes:
+            - nextcloud_data:/var/www/html
+        environment:
+            MYSQL_PASSWORD: ${NEXTCLOUD_DATABASE_PASSWORD}
+            MYSQL_DATABASE: ${NEXTCLOUD_DATABASE_NAME}
+            MYSQL_USER: ${NEXTCLOUD_DATABASE_USER}
+            MYSQL_HOST: database
+        networks:
+            - proxy_network
+        env_file:
+            - .env
+
 networks:
     proxy_network:
         name: proxy_network
@@ -90,4 +109,7 @@ volumes:
         driver: local
     mealie_data:
         name: mealie_data
+        driver: local
+    nextcloud_data:
+        name: nextcloud_data
         driver: local
