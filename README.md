@@ -25,6 +25,7 @@ This repository contains docker-compose files for various self-hosted services.
 | MySpeed             | Internet speed test       | 5216  | myspeed             |
 | Gotity              | Notification service      | 80    | gotity              |
 | Nextcloud           | Self-hosted cloud         | 80    | nextcloud           |
+| Home Assistant      | Home automation           | 8123  | homeassistant       |
 
 # Grafana Dashboard Id's
 
