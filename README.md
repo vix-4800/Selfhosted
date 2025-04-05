@@ -23,6 +23,8 @@ This repository contains docker-compose files for various self-hosted services.
 | Prometheus          | Monitoring service        | 9090  | prometheus          |
 | Vaultwarden         | Password manager          | 80    | vaultwarden         |
 | MySpeed             | Internet speed test       | 5216  | myspeed             |
+| Gotity              | Notification service      | 80    | gotity              |
+| Nextcloud           | Self-hosted cloud         | 80    | nextcloud           |
 
 # Grafana Dashboard Id's
 
