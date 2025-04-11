@@ -1,0 +1,31 @@
+services:
+    mealie:
+        image: ghcr.io/mealie-recipes/mealie:v2.6.0
+        container_name: mealie
+        restart: unless-stopped
+        volumes:
+            - mealie_data:/app/data/
+        environment:
+            ALLOW_SIGNUP: ${MEALIE_ALLOW_SIGNUP}
+            MAX_WORKERS: ${MEALIE_MAX_WORKERS}
+            WEB_CONCURRENCY: ${MEALIE_WEB_CONCURRENCY}
+            SECURITY_MAX_LOGIN_ATTEMPTS: ${MEALIE_SECURITY_MAX_LOGIN_ATTEMPTS}
+            SECURITY_USER_LOCKOUT_TIME: ${MEALIE_SECURITY_USER_LOCKOUT_TIME}
+        env_file:
+            - ../.env
+        networks:
+            - proxy_network
+        deploy:
+            resources:
+                limits:
+                    memory: 1000M
+
+networks:
+    proxy_network:
+        name: proxy_network
+        external: true
+
+volumes:
+    mealie_data:
+        name: mealie_data
+        driver: local

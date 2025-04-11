@@ -1,0 +1,30 @@
+services:
+    nextcloud:
+        image: nextcloud:fpm
+        container_name: nextcloud
+        restart: unless-stopped
+        # depends_on:
+        # - redis
+        # - database
+        volumes:
+            - nextcloud_data:/var/www/html
+            - /home/${USERNAME}/Cloud:/var/www/html/data
+        environment:
+            MYSQL_PASSWORD: ${NEXTCLOUD_DATABASE_PASSWORD}
+            MYSQL_DATABASE: ${NEXTCLOUD_DATABASE_NAME}
+            MYSQL_USER: ${NEXTCLOUD_DATABASE_USER}
+            MYSQL_HOST: database
+        networks:
+            - proxy_network
+        env_file:
+            - ../.env
+
+networks:
+    proxy_network:
+        name: proxy_network
+        external: true
+
+volumes:
+    nextcloud_data:
+        name: nextcloud_data
+        driver: local

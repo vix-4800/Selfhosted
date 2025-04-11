@@ -1,0 +1,24 @@
+services:
+    uptime-kuma:
+        image: louislam/uptime-kuma:1
+        container_name: uptime-kuma
+        restart: unless-stopped
+        volumes:
+            - uptime-kuma_data:/app/data
+        networks:
+            - proxy_network
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.1"
+                    memory: 128M
+
+networks:
+    proxy_network:
+        name: proxy_network
+        external: true
+
+volumes:
+    uptime-kuma_data:
+        name: uptime-kuma_data
+        driver: local

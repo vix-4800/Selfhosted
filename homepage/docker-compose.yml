@@ -1,0 +1,22 @@
+services:
+    homepage:
+        image: ghcr.io/gethomepage/homepage:latest
+        container_name: homepage
+        volumes:
+            - ./config:/app/config
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+        restart: unless-stopped
+        networks:
+            - proxy_network
+        env_file:
+            - ../.env
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.50"
+                    memory: 256M
+
+networks:
+    proxy_network:
+        name: proxy_network
+        external: true

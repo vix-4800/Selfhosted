@@ -1,0 +1,23 @@
+services:
+    homeassistant:
+        image: ghcr.io/home-assistant/home-assistant:stable
+        container_name: homeassistant
+        privileged: true
+        restart: unless-stopped
+        volumes:
+            - homeassistant_data:/config
+            - /run/dbus:/run/dbus:ro
+            - /etc/localtime:/etc/localtime:ro
+        network_mode: host
+        env_file:
+            - ../.env
+
+networks:
+    proxy_network:
+        name: proxy_network
+        external: true
+
+volumes:
+    homeassistant_data:
+        name: homeassistant_data
+        driver: local

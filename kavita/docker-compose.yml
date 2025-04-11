@@ -1,0 +1,29 @@
+services:
+    kavita:
+        image: jvmilazz0/kavita:latest
+        container_name: kavita
+        volumes:
+            - /var/data/comics:/comics
+            - /var/data/books:/books
+            - /var/data/manga:/manga
+            - kavita_data:/kavita/config
+        restart: unless-stopped
+        env_file:
+            - ../.env
+        networks:
+            - proxy_network
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.75"
+                    memory: 768M
+
+networks:
+    proxy_network:
+        name: proxy_network
+        external: true
+
+volumes:
+    kavita_data:
+        name: kavita_data
+        driver: local

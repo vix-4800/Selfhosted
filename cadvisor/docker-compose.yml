@@ -1,0 +1,26 @@
+services:
+    cadvisor:
+        image: gcr.io/cadvisor/cadvisor
+        container_name: cadvisor
+        privileged: true
+        restart: unless-stopped
+        networks:
+            - proxy_network
+        volumes:
+            - /:/rootfs:ro
+            - /var/run:/var/run:ro
+            - /sys:/sys:ro
+            - /var/lib/docker/:/var/lib/docker:ro
+            - /dev/disk/:/dev/disk:ro
+        devices:
+            - /dev/kmsg
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.1"
+                    memory: 64M
+
+networks:
+    proxy_network:
+        name: proxy_network
+        external: true

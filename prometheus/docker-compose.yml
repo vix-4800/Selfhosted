@@ -1,0 +1,42 @@
+services:
+    prometheus:
+        image: prom/prometheus
+        container_name: prometheus
+        networks:
+            - proxy_network
+        volumes:
+            - ./prometheus.yml:/etc/prometheus/prometheus.yml
+            - prometheus_data:/prometheus
+        restart: unless-stopped
+        deploy:
+            resources:
+                limits:
+                    cpus: "2.0"
+                    memory: 4096M
+                reservations:
+                    memory: 512M
+
+    node-exporter:
+        image: quay.io/prometheus/node-exporter:latest
+        container_name: node-exporter
+        networks:
+            - proxy_network
+        volumes:
+            - /:/host:ro,rslave
+        command: --path.rootfs=/host
+        restart: unless-stopped
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.1"
+                    memory: 64M
+
+networks:
+    proxy_network:
+        name: proxy_network
+        external: true
+
+volumes:
+    prometheus_data:
+        name: prometheus_data
+        driver: local

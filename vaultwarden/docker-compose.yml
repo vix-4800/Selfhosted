@@ -1,0 +1,21 @@
+services:
+    vaultwarden:
+        image: vaultwarden/server:latest
+        container_name: vaultwarden
+        volumes:
+            - vaultwarden_data:/data/
+        restart: unless-stopped
+        environment:
+            ROCKET_WEB_VAULT_PREFIX: /vaultwarden
+        networks:
+            - proxy_network
+
+networks:
+    proxy_network:
+        name: proxy_network
+        external: true
+
+volumes:
+    vaultwarden_data:
+        name: vaultwarden_data
+        driver: local
