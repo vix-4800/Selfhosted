@@ -1,2 +1,8 @@
-.env
-.vscode
+# IDE
+/.vscode
+
+# Environment
+/.env
+
+# Logs
+deploy.log
