@@ -1,0 +1,15 @@
+services:
+    immich-machine-learning:
+        container_name: immich_machine_learning
+        image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}-cuda
+        extends:
+            file: hwaccel.ml.yml
+            service: cuda
+        volumes:
+            - model-cache:/cache
+        restart: unless-stopped
+        ports:
+            - 3003:3003
+
+volumes:
+    model-cache:
