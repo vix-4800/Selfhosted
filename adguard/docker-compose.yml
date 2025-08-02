@@ -22,13 +22,6 @@ services:
             - "5443:5443/tcp"
             - "5443:5443/udp"
             - "6060:6060/tcp"
-        networks:
-            - proxy_network
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true
 
 volumes:
     adguard_data:

@@ -15,19 +15,12 @@ services:
             GITEA__mailer__ENABLED: true
             GITEA__mailer__PROTOCOL: smtps
         restart: unless-stopped
-        networks:
-            - proxy_network
         volumes:
             - gitea_data:/data
             - /etc/timezone:/etc/timezone:ro
             - /etc/localtime:/etc/localtime:ro
         env_file:
             - ../.env
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true
 
 volumes:
     gitea_data:

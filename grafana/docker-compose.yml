@@ -4,8 +4,6 @@ services:
     grafana:
         image: grafana/grafana-enterprise
         container_name: grafana
-        networks:
-            - proxy_network
         environment:
             GF_SERVER_ROOT_URL: http://grafana.localhost/
             GF_SERVER_SERVE_FROM_SUB_PATH: tru
@@ -17,11 +15,6 @@ services:
                 limits:
                     cpus: "0.5"
                     memory: 1024M
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true
 
 volumes:
     grafana_data:

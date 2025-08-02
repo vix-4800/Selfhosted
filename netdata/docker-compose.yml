@@ -5,8 +5,6 @@ services:
         image: netdata/netdata
         container_name: netdata
         pid: host
-        networks:
-            - proxy_network
         volumes:
             - netdataconfig:/etc/netdata
             - netdatalib:/var/lib/netdata
@@ -27,11 +25,6 @@ services:
             - SYS_ADMIN
         security_opt:
             - apparmor=unconfined
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true
 
 volumes:
     netdataconfig:

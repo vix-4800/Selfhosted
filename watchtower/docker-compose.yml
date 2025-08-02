@@ -8,12 +8,5 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
         restart: unless-stopped
         profiles: ["update"]
-        networks:
-            - proxy_network
         env_file:
             - ../.env
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true

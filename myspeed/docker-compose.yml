@@ -7,13 +7,6 @@ services:
         restart: unless-stopped
         volumes:
             - myspeed_data:/myspeed/data
-        networks:
-            - proxy_network
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true
 
 volumes:
     myspeed_data:

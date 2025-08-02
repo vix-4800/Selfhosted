@@ -6,9 +6,7 @@ services:
         restart: unless-stopped
         container_name: redis
         ports:
-            - "6379:6379"
-        networks:
-            - proxy_network
+            - 6379:6379
         volumes:
             - redis_data:/data
         healthcheck:
@@ -18,11 +16,6 @@ services:
                 - ping
             retries: 3
             timeout: 5s
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true
 
 volumes:
     redis_data:

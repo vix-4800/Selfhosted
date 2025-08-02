@@ -12,18 +12,11 @@ services:
         restart: unless-stopped
         env_file:
             - ../.env
-        networks:
-            - proxy_network
         deploy:
             resources:
                 limits:
                     cpus: "0.75"
                     memory: 768M
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true
 
 volumes:
     kavita_data:

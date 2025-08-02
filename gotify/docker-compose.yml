@@ -6,15 +6,8 @@ services:
         container_name: gotify
         volumes:
             - gotify_data:/app/data
-        networks:
-            - proxy_network
         env_file:
             - ../.env
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true
 
 volumes:
     gotify_data:

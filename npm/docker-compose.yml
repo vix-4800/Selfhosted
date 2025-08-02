@@ -9,8 +9,6 @@ services:
             - 80:80
             - 443:443
             - 81:81
-        networks:
-            - proxy_network
         volumes:
             - nginx-proxy-manager_data:/data
             - /etc/letsencrypt:/etc/letsencrypt
@@ -24,11 +22,6 @@ services:
             DB_MYSQL_NAME: ${NGINX_PROXY_MANAGER_DATABASE_NAME}
         env_file:
             - ../.env
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true
 
 volumes:
     nginx-proxy-manager_data:

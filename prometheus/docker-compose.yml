@@ -5,7 +5,7 @@ services:
         image: prom/prometheus
         container_name: prometheus
         networks:
-            - proxy_network
+            - prometheus_network
         volumes:
             - ./prometheus.yml:/etc/prometheus/prometheus.yml
             - prometheus_data:/prometheus
@@ -22,7 +22,7 @@ services:
         image: quay.io/prometheus/node-exporter:latest
         container_name: node-exporter
         networks:
-            - proxy_network
+            - prometheus_network
         volumes:
             - /:/host:ro,rslave
         command: --path.rootfs=/host
@@ -34,9 +34,8 @@ services:
                     memory: 64M
 
 networks:
-    proxy_network:
-        name: proxy_network
-        external: true
+    prometheus_network:
+        name: prometheus_network
 
 volumes:
     prometheus_data:

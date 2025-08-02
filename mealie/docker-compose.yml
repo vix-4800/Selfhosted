@@ -15,17 +15,10 @@ services:
             SECURITY_USER_LOCKOUT_TIME: ${MEALIE_SECURITY_USER_LOCKOUT_TIME}
         env_file:
             - ../.env
-        networks:
-            - proxy_network
         deploy:
             resources:
                 limits:
                     memory: 1000M
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true
 
 volumes:
     mealie_data:

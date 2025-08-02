@@ -8,18 +8,11 @@ services:
         volumes:
             - navidrome_data:/data
             - /var/music:/music:ro
-        networks:
-            - proxy_network
         environment:
             ND_PROMETHEUS_ENABLED: true
             ND_PROMETHEUS_METRICSPATH: /metrics
         env_file:
             - ../.env
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true
 
 volumes:
     navidrome_data:

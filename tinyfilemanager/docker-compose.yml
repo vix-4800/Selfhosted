@@ -7,10 +7,3 @@ services:
         restart: unless-stopped
         volumes:
             - /home/${USERNAME}:/var/www/html/data
-        networks:
-            - proxy_network
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true

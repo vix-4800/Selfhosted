@@ -6,8 +6,6 @@ services:
         container_name: cadvisor
         privileged: true
         restart: unless-stopped
-        networks:
-            - proxy_network
         volumes:
             - /:/rootfs:ro
             - /var/run:/var/run:ro
@@ -21,8 +19,3 @@ services:
                 limits:
                     cpus: "0.1"
                     memory: 64M
-
-networks:
-    proxy_network:
-        name: proxy_network
-        external: true
