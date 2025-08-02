@@ -38,11 +38,22 @@ This repository contains docker-compose files for various self-hosted services.
 
 # Grafana Dashboard Id's
 
--   1860 - [Node Exporter](https://grafana.com/grafana/dashboards/1860-node-exporter-full/)
--   13946 - [cAdvisor](https://grafana.com/grafana/dashboards/13946-docker-cadvisor/)
--   14031 - [MySQL](https://grafana.com/grafana/dashboards/14031-mysql-dashboard/)
--   14900 - [Nginx](https://grafana.com/grafana/dashboards/14900-nginx/)
--   13041 - [Website](https://grafana.com/grafana/dashboards/13041-website-monitoring/)
--   13230 - [SSL Certificate Monitor](https://grafana.com/grafana/dashboards/13230-certificate-monitor/)
--   18038 - [Navidrome](https://grafana.com/grafana/dashboards/18038-navidrome/)
--   14000 - [GitHub](https://grafana.com/grafana/dashboards/14000-github-default/)
+| ID    | Name                         |
+| ----- | ---------------------------- |
+| 1860  | [Node Exporter][1]           |
+| 13946 | [cAdvisor][2]                |
+| 14031 | [MySQL][3]                   |
+| 14900 | [Nginx][4]                   |
+| 13041 | [Website][5]                 |
+| 13230 | [SSL Certificate Monitor][6] |
+| 18038 | [Navidrome][7]               |
+| 14000 | [GitHub][8]                  |
+
+[1]: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+[2]: https://grafana.com/grafana/dashboards/13946-docker-cadvisor/
+[3]: https://grafana.com/grafana/dashboards/14031-mysql-dashboard/
+[4]: https://grafana.com/grafana/dashboards/14900-nginx/
+[5]: https://grafana.com/grafana/dashboards/13041-website-monitoring/
+[6]: https://grafana.com/grafana/dashboards/13230-certificate-monitor/
+[7]: https://grafana.com/grafana/dashboards/18038-navidrome/
+[8]: https://grafana.com/grafana/dashboards/14000-github-default/
