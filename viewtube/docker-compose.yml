@@ -1,0 +1,42 @@
+name: self-hosted
+
+services:
+    viewtube:
+        image: mauriceo/viewtube:latest
+        restart: unless-stopped
+        networks:
+            - viewtube
+        volumes:
+            - viewtube_data:/data
+        environment:
+            - VIEWTUBE_DATABASE_HOST=viewtube-mongodb
+            - VIEWTUBE_REDIS_HOST=viewtube-redis
+        ports:
+            - 8066:8066
+        depends_on:
+            - viewtube-mongodb
+            - viewtube-redis
+
+    viewtube-mongodb:
+        image: mongo:7
+        restart: unless-stopped
+        networks:
+            - viewtube
+        volumes:
+            - viewtube_db:/data/db
+
+    viewtube-redis:
+        image: redis:7
+        restart: unless-stopped
+        networks:
+            - viewtube
+        volumes:
+            - viewtube_redis:/data
+
+networks:
+    viewtube:
+
+volumes:
+    viewtube_data:
+    viewtube_db:
+    viewtube_redis:

@@ -31,6 +31,7 @@ This repository contains docker-compose files for various self-hosted services.
 | Tinyfilemanager     | File manager               | 80    | tinyfilemanager     | \~1 core              | \~256 MB                                     |
 | Uptime Kuma         | Uptime monitoring          | 3001  | uptime-kuma         | \~1 core              | \~256 MB                                     |
 | Vaultwarden         | Password manager           | 80    | vaultwarden         | \~1 core              | \~512 MB                                     |
+| Viewtube            | YouTube front              | 8066  | viewtube            |                       |                                              |
 | Watchtower          | Auto-update containers     |       | watchtower          | \~1 core              | \~256 MB                                     |
 | Whoogle             | Self-hosted Google proxy   | 5000  | whoogle             | \~1 core              | \~256 MB                                     |
 | WireGuard           | Self-hosted VPN            | 51821 | wireguard           | \~1 core              | \~128 MB                                     |
