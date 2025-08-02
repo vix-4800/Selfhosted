@@ -1,3 +1,5 @@
+name: self-hosted
+
 services:
     gitea:
         image: docker.io/gitea/gitea:nightly

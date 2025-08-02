@@ -1,3 +1,5 @@
+name: self-hosted
+
 services:
     vaultwarden:
         image: vaultwarden/server:latest

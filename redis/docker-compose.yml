@@ -1,3 +1,5 @@
+name: self-hosted
+
 services:
     redis:
         image: redis:alpine

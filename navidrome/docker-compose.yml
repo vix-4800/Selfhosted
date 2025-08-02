@@ -1,3 +1,5 @@
+name: self-hosted
+
 services:
     navidrome:
         image: deluan/navidrome:latest

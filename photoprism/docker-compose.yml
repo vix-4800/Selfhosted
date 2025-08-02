@@ -1,3 +1,5 @@
+name: self-hosted
+
 services:
     photoprism:
         image: photoprism/photoprism:latest

@@ -1,3 +1,5 @@
+name: self-hosted
+
 services:
     kavita:
         image: jvmilazz0/kavita:latest

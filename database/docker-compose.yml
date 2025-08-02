@@ -1,3 +1,5 @@
+name: self-hosted
+
 services:
     database:
         image: mariadb:11

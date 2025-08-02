@@ -1,3 +1,5 @@
+name: self-hosted
+
 services:
     watchtower:
         image: containrrr/watchtower

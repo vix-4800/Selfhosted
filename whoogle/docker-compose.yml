@@ -2,6 +2,8 @@
 # see https://github.com/docker/compose/issues/4513
 version: "2.4"
 
+name: self-hosted
+
 services:
     whoogle-search:
         image: ${WHOOGLE_IMAGE:-benbusby/whoogle-search}

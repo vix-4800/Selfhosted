@@ -1,3 +1,5 @@
+name: self-hosted
+
 services:
     wg-easy:
         image: ghcr.io/wg-easy/wg-easy
