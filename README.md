@@ -9,6 +9,7 @@ This repository contains docker-compose files for various self-hosted services.
 | cadvisor            | Container metrics exporter |       | cadvisor            | \~1 core              | \~100–200 MB                                 |
 | Dashy               | Dashboard service          | 8080  | dashy               | \~1 core              | \~256 MB                                     |
 | Database (MariaDB)  | Database service           | 3306  | database            | ≥1 core, preferably 2 | ≥1 GB RAM                                    |
+| Focalboard          | self-hosted kanban         | 8000  | focalboard          | \~1 core              | \~512 MB–1 GB                                |
 | Gitea               | Self-hosted git service    | 3000  | gitea               | 2 cores               | \~1 GB RAM                                   |
 | Gotify              | Notification service       | 80    | gotify              | \~1 core              | \~256 MB                                     |
 | Grafana             | Monitoring dashboards      | 3000  | grafana             | 1–2 cores             | \~512 MB–1 GB                                |

@@ -1,0 +1,13 @@
+name: self-hosted
+
+services:
+    focalboard:
+        image: mattermost/focalboard
+        container_name: focalboard
+        restart: unless-stopped
+        stdin_open: true
+        tty: true
+        ports:
+            - 80:8000
+        env_file:
+            - ../.env
