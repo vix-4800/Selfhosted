@@ -16,6 +16,7 @@ This repository contains docker-compose files for various self-hosted services.
 | Homepage            | Homepage dashboard         | 3000  | homepage            | \~1 core              | \~256 MB                                     |
 | Immich              | Photo and video manager    | 2283  | immich              | ≥2 cores              | ≥2 GB RAM                                    |
 | Kavita              | Comic service              | 5000  | kavita              | \~1 core              | \~512 MB                                     |
+| Kimai               | Time tracking service      | 8001  | kimai               | \~1 core              | \~512 MB                                     |
 | Mealie              | Recipe service             | 9000  | mealie              | \~1 core              | \~512 MB                                     |
 | MySpeed             | Internet speed test        | 5216  | myspeed             | \~1 core              | \~256 MB                                     |
 | Navidrome           | Music service              | 4533  | navidrome           | \~1 core              | \~512 MB                                     |
