@@ -20,6 +20,7 @@ This repository contains docker-compose files for various self-hosted services.
 | Kavita              | Comic service              | 5000  | kavita              | \~1 core              | \~512 MB                                     |
 | Kimai               | Time tracking service      | 8001  | kimai               | \~1 core              | \~512 MB                                     |
 | Mealie              | Recipe service             | 9000  | mealie              | \~1 core              | \~512 MB                                     |
+| n8n                 | AI workflow automation     | 5678  | n8n                 | \~1 core              | \~512 MB–1 GB                                |
 | MySpeed             | Internet speed test        | 5216  | myspeed             | \~1 core              | \~256 MB                                     |
 | Navidrome           | Music service              | 4533  | navidrome           | \~1 core              | \~512 MB                                     |
 | NetData             | System monitoring service  | 19999 | netdata             | 1–2 cores             | \~1 GB RAM                                   |
