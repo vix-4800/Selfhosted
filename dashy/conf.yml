@@ -1,0 +1,23 @@
+pageInfo:
+    title: Dashboard
+appConfig:
+    theme: glass
+    layout: auto
+    iconSize: small
+sections:
+    - name: Work
+      displayData:
+          sortBy: default
+          rows: 1
+          cols: 1
+          collapsed: false
+          hideForGuests: false
+      items: []
+    - name: HomeLab
+      displayData:
+          sortBy: default
+          rows: 1
+          cols: 1
+          collapsed: false
+          hideForGuests: false
+      items: []

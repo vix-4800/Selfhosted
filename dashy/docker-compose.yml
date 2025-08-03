@@ -1,0 +1,11 @@
+name: self-hosted
+
+services:
+    dashy:
+        image: lissy93/dashy:latest
+        container_name: dashy
+        restart: unless-stopped
+        ports:
+            - 8080:8080
+        volumes:
+            - ./conf.yml:/app/user-data/conf.yml
