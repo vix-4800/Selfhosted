@@ -11,6 +11,11 @@ services:
         env_file:
             - ../.env
         environment:
+            DB_HOST: db
+            DB_PORT: 3306
+            DB_CONNECTION: mysql
+            DB_DATABASE: ${FIREFLY_DB_DATABASE}
+            DB_USERNAME: ${FIREFLY_DB_USERNAME}
             DB_PASSWORD: ${FIREFLY_DB_PASSWORD}
         networks:
             - firefly_iii
@@ -27,7 +32,9 @@ services:
         env_file:
             - ../.env
         environment:
-            MYSQL_PASSWORD: ${FIREFLY_MYSQL_PASSWORD}
+            MYSQL_DATABASE: ${FIREFLY_DB_DATABASE}
+            MYSQL_USER: ${FIREFLY_DB_USERNAME}
+            MYSQL_PASSWORD: ${FIREFLY_DB_PASSWORD}
         networks:
             - firefly_iii
         volumes:

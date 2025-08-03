@@ -9,8 +9,9 @@ This repository contains docker-compose files for various self-hosted services.
 | cadvisor            | Container metrics exporter |       | cadvisor            | \~1 core              | \~100–200 MB                                 |
 | Dashy               | Dashboard service          | 8080  | dashy               | \~1 core              | \~256 MB                                     |
 | Database (MariaDB)  | Database service           | 3306  | database            | ≥1 core, preferably 2 | ≥1 GB RAM                                    |
-| Focalboard          | self-hosted kanban         | 8000  | focalboard          | \~1 core              | \~512 MB–1 GB                                |
-| Gitea               | Self-hosted git service    | 3000  | gitea               | 2 cores               | \~1 GB RAM                                   |
+| Firefly             | Personal finance manager   | 8080  | fireflyiii          | \~1 core              | \~512 MB–1 GB                                |
+| Focalboard          | Kanban                     | 8000  | focalboard          | \~1 core              | \~512 MB–1 GB                                |
+| Gitea               | Git service                | 3000  | gitea               | 2 cores               | \~1 GB RAM                                   |
 | Gotify              | Notification service       | 80    | gotify              | \~1 core              | \~256 MB                                     |
 | Grafana             | Monitoring dashboards      | 3000  | grafana             | 1–2 cores             | \~512 MB–1 GB                                |
 | Home Assistant      | Home automation            | 8123  | homeassistant       | ≥1 core, preferably 2 | ≥2 GB, preferably 4 GB                       |
@@ -22,7 +23,7 @@ This repository contains docker-compose files for various self-hosted services.
 | MySpeed             | Internet speed test        | 5216  | myspeed             | \~1 core              | \~256 MB                                     |
 | Navidrome           | Music service              | 4533  | navidrome           | \~1 core              | \~512 MB                                     |
 | NetData             | System monitoring service  | 19999 | netdata             | 1–2 cores             | \~1 GB RAM                                   |
-| Nextcloud           | Self-hosted cloud          | 80    | nextcloud           | ≥2 cores              | ≥2–4 GB RAM                                  |
+| Nextcloud           | Cloud                      | 80    | nextcloud           | ≥2 cores              | ≥2–4 GB RAM                                  |
 | Nginx Proxy Manager | Reverse proxy manager      | 81    | nginx-proxy-manager | \~1 core              | \~256 MB                                     |
 | ntfy                | Push notifications         | 80    | ntfy.sh             | \~1 core              | \~256 MB                                     |
 | Photoprism          | Photo service              | 2342  | photoprism          | ≥2 cores              | ≥2 GB RAM                                    |
@@ -35,8 +36,8 @@ This repository contains docker-compose files for various self-hosted services.
 | Vaultwarden         | Password manager           | 80    | vaultwarden         | \~1 core              | \~512 MB                                     |
 | Viewtube            | YouTube front              | 8066  | viewtube            |                       |                                              |
 | Watchtower          | Auto-update containers     |       | watchtower          | \~1 core              | \~256 MB                                     |
-| Whoogle             | Self-hosted Google proxy   | 5000  | whoogle             | \~1 core              | \~256 MB                                     |
-| WireGuard           | Self-hosted VPN            | 51821 | wireguard           | \~1 core              | \~128 MB                                     |
+| Whoogle             | Google proxy               | 5000  | whoogle             | \~1 core              | \~256 MB                                     |
+| WireGuard           | VPN                        | 51821 | wireguard           | \~1 core              | \~128 MB                                     |
 
 # Grafana Dashboard Id's
 
