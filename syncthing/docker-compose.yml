@@ -5,14 +5,10 @@ services:
         image: syncthing/syncthing:latest
         container_name: syncthing
         hostname: syncthing
-        ports:
-            - 8384:8384
-            - 22000:22000/tcp
-            - 22000:22000/udp
-            - 21027:21027/udp
+        network_mode: host
         volumes:
-            - syncthing_data:/var/data
-            - /sync:/var/syncthing
+            - syncthing_data:/var/syncthing # configs
+            # - ...:/var/syncthing/... # data
         restart: unless-stopped
         environment:
             - PUID=1000
