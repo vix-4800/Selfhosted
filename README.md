@@ -39,6 +39,7 @@ This repository contains docker-compose files for various self-hosted services.
 | Watchtower          | Auto-update containers     |       | watchtower          | \~1 core              | \~256 MB                                     |
 | Whoogle             | Google proxy               | 5000  | whoogle             | \~1 core              | \~256 MB                                     |
 | WireGuard           | VPN                        | 51821 | wireguard           | \~1 core              | \~128 MB                                     |
+| Wallos              | Tracking expenses          | 80    | wallos              | \~1 core              | \~512 MB                                     |
 
 # Grafana Dashboard Id's
 
