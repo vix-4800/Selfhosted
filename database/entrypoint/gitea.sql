@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS `gitea`;
+CREATE DATABASE IF NOT EXISTS gitea;
 
-CREATE USER 'gitea'@'%' IDENTIFIED BY 'gitea';
-GRANT ALL PRIVILEGES ON `gitea`.* TO 'gitea'@'%';
+CREATE USER gitea@% IDENTIFIED BY 'gitea';
+GRANT ALL PRIVILEGES ON gitea.* TO gitea@%;
