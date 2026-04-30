@@ -1,3 +1,4 @@
+---
 name: self-hosted
 
 services:
@@ -8,8 +9,8 @@ services:
       - $PWD/db/:/etc/x-ui/
       - $PWD/cert/:/root/cert/
     environment:
-      XRAY_VMESS_AEAD_FORCED: "false"
-      XUI_ENABLE_FAIL2BAN: "true"
+      XRAY_VMESS_AEAD_FORCED: 'false'
+      XUI_ENABLE_FAIL2BAN: 'true'
     tty: true
     network_mode: host
     restart: unless-stopped

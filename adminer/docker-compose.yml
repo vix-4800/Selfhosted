@@ -1,9 +1,10 @@
+---
 name: self-hosted
 
 services:
-    adminer:
-        image: adminer
-        container_name: adminer
-        restart: unless-stopped
-        environment:
-            ADMINER_DEFAULT_SERVER: database
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: unless-stopped
+    environment:
+      ADMINER_DEFAULT_SERVER: database

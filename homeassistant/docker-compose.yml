@@ -1,20 +1,21 @@
+---
 name: self-hosted
 
 services:
-    homeassistant:
-        image: ghcr.io/home-assistant/home-assistant:stable
-        container_name: homeassistant
-        privileged: true
-        restart: unless-stopped
-        volumes:
-            - homeassistant_data:/config
-            - /run/dbus:/run/dbus:ro
-            - /etc/localtime:/etc/localtime:ro
-        network_mode: host
-        env_file:
-            - ../.env
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    privileged: true
+    restart: unless-stopped
+    volumes:
+      - homeassistant_data:/config
+      - /run/dbus:/run/dbus:ro
+      - /etc/localtime:/etc/localtime:ro
+    network_mode: host
+    env_file:
+      - ../.env
 
 volumes:
-    homeassistant_data:
-        name: homeassistant_data
-        driver: local
+  homeassistant_data:
+    name: homeassistant_data
+    driver: local

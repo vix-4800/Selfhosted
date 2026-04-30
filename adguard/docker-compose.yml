@@ -1,32 +1,33 @@
+---
 name: self-hosted
 
 services:
-    adguard:
-        image: adguard/adguardhome
-        container_name: adguard
-        restart: unless-stopped
-        volumes:
-            - adguard_data:/opt/adguardhome/work
-            - adguard_config:/opt/adguardhome/conf
-        ports:
-            - "53:53/tcp"
-            - "53:53/udp"
-            - "67:67/udp"
-            - "68:68/udp"
-            - "80:80/tcp"
-            - "443:443/tcp"
-            - "443:443/udp"
-            - "3000:3000/tcp"
-            - "853:853/tcp"
-            - "853:853/udp"
-            - "5443:5443/tcp"
-            - "5443:5443/udp"
-            - "6060:6060/tcp"
+  adguard:
+    image: adguard/adguardhome
+    container_name: adguard
+    restart: unless-stopped
+    volumes:
+      - adguard_data:/opt/adguardhome/work
+      - adguard_config:/opt/adguardhome/conf
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 67:67/udp
+      - 68:68/udp
+      - 80:80/tcp
+      - 443:443/tcp
+      - 443:443/udp
+      - 3000:3000/tcp
+      - 853:853/tcp
+      - 853:853/udp
+      - 5443:5443/tcp
+      - 5443:5443/udp
+      - 6060:6060/tcp
 
 volumes:
-    adguard_data:
-        name: adguard_data
-        driver: local
-    adguard_config:
-        name: adguard_config
-        driver: local
+  adguard_data:
+    name: adguard_data
+    driver: local
+  adguard_config:
+    name: adguard_config
+    driver: local

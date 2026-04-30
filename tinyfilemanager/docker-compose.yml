@@ -1,9 +1,10 @@
+---
 name: self-hosted
 
 services:
-    tinyfilemanager:
-        image: tinyfilemanager/tinyfilemanager:master
-        container_name: tinyfilemanager
-        restart: unless-stopped
-        volumes:
-            - /home/${USERNAME}:/var/www/html/data
+  tinyfilemanager:
+    image: tinyfilemanager/tinyfilemanager:master
+    container_name: tinyfilemanager
+    restart: unless-stopped
+    volumes:
+      - /home/${USERNAME}:/var/www/html/data

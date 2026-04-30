@@ -16,4 +16,8 @@ services:
 
 volumes:
   wallos_db:
+    name: wallos_db
+    driver: local
   wallos_logos:
+    name: wallos_logos
+    driver: local

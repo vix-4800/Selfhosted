@@ -1,19 +1,20 @@
+---
 name: self-hosted
 
 services:
-    uptime-kuma:
-        image: louislam/uptime-kuma:1
-        container_name: uptime-kuma
-        restart: unless-stopped
-        volumes:
-            - uptime-kuma_data:/app/data
-        deploy:
-            resources:
-                limits:
-                    cpus: "0.1"
-                    memory: 128M
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    restart: unless-stopped
+    volumes:
+      - uptime-kuma_data:/app/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 128M
 
 volumes:
-    uptime-kuma_data:
-        name: uptime-kuma_data
-        driver: local
+  uptime-kuma_data:
+    name: uptime-kuma_data
+    driver: local

@@ -1,24 +1,25 @@
+---
 name: self-hosted
 
 services:
-    photoprism:
-        image: photoprism/photoprism:latest
-        container_name: photoprism
-        restart: unless-stopped
-        environment:
-            PHOTOPRISM_AUTH_MODE: password
-            PHOTOPRISM_SITE_URL: http://prism.localhost/
-            PHOTOPRISM_DATABASE_DRIVER: mysql
-            PHOTOPRISM_DATABASE_SERVER: database:3306
-            PHOTOPRISM_SITE_CAPTION: Photoprism
-            PHOTOPRISM_SITE_DESCRIPTION: "Self-hosted photo and video organizer."
-        volumes:
-            - /var/photos:/photoprism/originals
-            - photoprism_data:/photoprism/storage
-        env_file:
-            - ../.env
+  photoprism:
+    image: photoprism/photoprism:latest
+    container_name: photoprism
+    restart: unless-stopped
+    environment:
+      PHOTOPRISM_AUTH_MODE: password
+      PHOTOPRISM_SITE_URL: http://prism.localhost/
+      PHOTOPRISM_DATABASE_DRIVER: mysql
+      PHOTOPRISM_DATABASE_SERVER: database:3306
+      PHOTOPRISM_SITE_CAPTION: Photoprism
+      PHOTOPRISM_SITE_DESCRIPTION: Self-hosted photo and video organizer.
+    volumes:
+      - /var/photos:/photoprism/originals
+      - photoprism_data:/photoprism/storage
+    env_file:
+      - ../.env
 
 volumes:
-    photoprism_data:
-        name: photoprism_data
-        driver: local
+  photoprism_data:
+    name: photoprism_data
+    driver: local

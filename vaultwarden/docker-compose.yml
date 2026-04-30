@@ -1,16 +1,17 @@
+---
 name: self-hosted
 
 services:
-    vaultwarden:
-        image: vaultwarden/server:latest
-        container_name: vaultwarden
-        volumes:
-            - vaultwarden_data:/data/
-        restart: unless-stopped
-        environment:
-            ROCKET_WEB_VAULT_PREFIX: /vaultwarden
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    volumes:
+      - vaultwarden_data:/data/
+    restart: unless-stopped
+    environment:
+      ROCKET_WEB_VAULT_PREFIX: /vaultwarden
 
 volumes:
-    vaultwarden_data:
-        name: vaultwarden_data
-        driver: local
+  vaultwarden_data:
+    name: vaultwarden_data
+    driver: local

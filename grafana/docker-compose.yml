@@ -1,22 +1,23 @@
+---
 name: self-hosted
 
 services:
-    grafana:
-        image: grafana/grafana-enterprise
-        container_name: grafana
-        environment:
-            GF_SERVER_ROOT_URL: http://grafana.localhost/
-            GF_SERVER_SERVE_FROM_SUB_PATH: tru
-        restart: unless-stopped
-        volumes:
-            - grafana_data:/var/lib/grafana
-        deploy:
-            resources:
-                limits:
-                    cpus: "0.5"
-                    memory: 1024M
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    environment:
+      GF_SERVER_ROOT_URL: http://grafana.localhost/
+      GF_SERVER_SERVE_FROM_SUB_PATH: tru
+    restart: unless-stopped
+    volumes:
+      - grafana_data:/var/lib/grafana
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1024M
 
 volumes:
-    grafana_data:
-        name: grafana_data
-        driver: local
+  grafana_data:
+    name: grafana_data
+    driver: local

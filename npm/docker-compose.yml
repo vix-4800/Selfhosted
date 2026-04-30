@@ -1,29 +1,30 @@
+---
 name: self-hosted
 
 services:
-    nginx-proxy-manager:
-        image: jc21/nginx-proxy-manager:latest
-        container_name: nginx-proxy-manager
-        restart: unless-stopped
-        ports:
-            - 80:80
-            - 443:443
-            - 81:81
-        volumes:
-            - nginx-proxy-manager_data:/data
-            - /etc/letsencrypt:/etc/letsencrypt
-        environment:
-            INITIAL_ADMIN_EMAIL: ${NGINX_PROXY_MANAGER_ADMIN_EMAIL}
-            INITIAL_ADMIN_PASSWORD: ${NGINX_PROXY_MANAGER_ADMIN_PASSWORD}
-            DB_MYSQL_HOST: database
-            DB_MYSQL_PORT: 3306
-            DB_MYSQL_USER: ${NGINX_PROXY_MANAGER_DATABASE_USER}
-            DB_MYSQL_PASSWORD: ${NGINX_PROXY_MANAGER_DATABASE_PASSWORD}
-            DB_MYSQL_NAME: ${NGINX_PROXY_MANAGER_DATABASE_NAME}
-        env_file:
-            - ../.env
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+    volumes:
+      - nginx-proxy-manager_data:/data
+      - /etc/letsencrypt:/etc/letsencrypt
+    environment:
+      INITIAL_ADMIN_EMAIL: ${NGINX_PROXY_MANAGER_ADMIN_EMAIL}
+      INITIAL_ADMIN_PASSWORD: ${NGINX_PROXY_MANAGER_ADMIN_PASSWORD}
+      DB_MYSQL_HOST: database
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: ${NGINX_PROXY_MANAGER_DATABASE_USER}
+      DB_MYSQL_PASSWORD: ${NGINX_PROXY_MANAGER_DATABASE_PASSWORD}
+      DB_MYSQL_NAME: ${NGINX_PROXY_MANAGER_DATABASE_NAME}
+    env_file:
+      - ../.env
 
 volumes:
-    nginx-proxy-manager_data:
-        name: nginx-proxy-manager_data
-        driver: local
+  nginx-proxy-manager_data:
+    name: nginx-proxy-manager_data
+    driver: local

@@ -1,20 +1,21 @@
+---
 name: self-hosted
 
 services:
-    navidrome:
-        image: deluan/navidrome:latest
-        container_name: navidrome
-        restart: unless-stopped
-        volumes:
-            - navidrome_data:/data
-            - /var/music:/music:ro
-        environment:
-            ND_PROMETHEUS_ENABLED: true
-            ND_PROMETHEUS_METRICSPATH: /metrics
-        env_file:
-            - ../.env
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    restart: unless-stopped
+    volumes:
+      - navidrome_data:/data
+      - /var/music:/music:ro
+    environment:
+      ND_PROMETHEUS_ENABLED: true
+      ND_PROMETHEUS_METRICSPATH: /metrics
+    env_file:
+      - ../.env
 
 volumes:
-    navidrome_data:
-        name: navidrome_data
-        driver: local
+  navidrome_data:
+    name: navidrome_data
+    driver: local

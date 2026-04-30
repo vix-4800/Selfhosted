@@ -1,14 +1,15 @@
+---
 name: self-hosted
 
 services:
-    myspeed:
-        container_name: myspeed
-        image: "germannewsmaker/myspeed"
-        restart: unless-stopped
-        volumes:
-            - myspeed_data:/myspeed/data
+  myspeed:
+    image: germannewsmaker/myspeed
+    container_name: myspeed
+    restart: unless-stopped
+    volumes:
+      - myspeed_data:/myspeed/data
 
 volumes:
-    myspeed_data:
-        name: myspeed_data
-        driver: local
+  myspeed_data:
+    name: myspeed_data
+    driver: local
