@@ -9,7 +9,7 @@ services:
     network_mode: host
     volumes:
       - syncthing_data:/var/syncthing
-      - ~/Obsidian:/var/syncthing/Obsidian
+      # - <path>:/var/syncthing/<folder>
     restart: unless-stopped
     environment:
       - PUID=1000
