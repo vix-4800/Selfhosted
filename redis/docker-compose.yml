@@ -6,6 +6,8 @@ services:
     image: redis:alpine
     restart: unless-stopped
     container_name: redis
+    networks:
+      - redis_network
     ports:
       - 6379:6379
     volumes:
@@ -18,7 +20,23 @@ services:
       retries: 3
       timeout: 5s
 
+  redis-insight:
+    image: redis/redisinsight:latest
+    container_name: redis-insight
+    ports:
+      - 5540:5540
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    networks:
+      - redis_network
+
 volumes:
   redis_data:
     name: redis_data
     driver: local
+
+networks:
+  default:
+    name: redis_network
+    driver: bridge
